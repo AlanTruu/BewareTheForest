@@ -81,7 +81,7 @@ namespace EasyPeasyFirstPersonController
             slideAudioSource = gameObject.AddComponent<AudioSource>();
             slideAudioSource.playOnAwake = false;
             slideAudioSource.loop = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.lockState = CursorLockMode.Locked;
             currentCameraHeight = originalCameraParentHeight;
             currentBobOffset = 0f;
             currentFov = normalFov;
@@ -282,8 +282,8 @@ namespace EasyPeasyFirstPersonController
 
         public void SetCursorVisibility(bool newVisibility)
         {
-            Cursor.lockState = newVisibility ? CursorLockMode.None : CursorLockMode.Locked;
-            Cursor.visible = newVisibility;
+            //Cursor.lockState = newVisibility ? CursorLockMode.None : CursorLockMode.Locked;
+            //Cursor.visible = newVisibility;
         }
     }
 }
