@@ -6,6 +6,10 @@ namespace EasyPeasyFirstPersonController
 
     public partial class FirstPersonController : MonoBehaviour
     {
+        // To stop camera moving when inventory is open
+        public static FirstPersonController Instance;
+        public bool updateRotation;
+
         [Range(0, 100)] public float mouseSensitivity = 50f;
         [Range(0f, 200f)] private float snappiness = 100f;
         [Range(0f, 20f)] public float walkSpeed = 3f;
@@ -73,6 +77,9 @@ namespace EasyPeasyFirstPersonController
 
         private void Awake()
         {
+            // For Inventory script
+            Instance = this;
+
             characterController = GetComponent<CharacterController>();
             cam = playerCamera.GetComponent<Camera>();
             originalHeight = characterController.height;
@@ -81,7 +88,7 @@ namespace EasyPeasyFirstPersonController
             slideAudioSource = gameObject.AddComponent<AudioSource>();
             slideAudioSource.playOnAwake = false;
             slideAudioSource.loop = false;
-            //Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Locked;
             currentCameraHeight = originalCameraParentHeight;
             currentBobOffset = 0f;
             currentFov = normalFov;
@@ -96,6 +103,12 @@ namespace EasyPeasyFirstPersonController
 
         private void Update()
         {
+            // For Inventory script
+            if (!updateRotation)
+            {
+                return;
+            }
+
             isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask, groundCheckQueryTriggerInteraction);
             if (isGrounded && moveDirection.y < 0)
             {
@@ -282,8 +295,8 @@ namespace EasyPeasyFirstPersonController
 
         public void SetCursorVisibility(bool newVisibility)
         {
-            //Cursor.lockState = newVisibility ? CursorLockMode.None : CursorLockMode.Locked;
-            //Cursor.visible = newVisibility;
+            Cursor.lockState = newVisibility ? CursorLockMode.None : CursorLockMode.Locked;
+            Cursor.visible = newVisibility;
         }
     }
 }

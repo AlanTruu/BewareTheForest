@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using EasyPeasyFirstPersonController;
 
 public class Inventory : MonoBehaviour
 {
@@ -10,11 +11,19 @@ public class Inventory : MonoBehaviour
     
     public GameObject hotbarObject;
     public GameObject inventorySlotParent;
+    public GameObject inventoryContainer;
 
     // Dragging items variables
     public Image dragIcon;
     private Slot draggedSlot = null;
     private bool isDragging = false;
+
+    // Variables for picking up prefabs
+    public float pickupRange = 3f;
+    private Item lookedAtItem = null;
+    public Material highlightMaterial;
+    private Material originalMaterial;
+    private Renderer lookedAtRenderer = null; // Use for raycast storing
 
     private List<Slot> inventorySlots = new List<Slot>(); // List of inventory slots
     private List<Slot> hotbarSlots = new List<Slot>(); // List of hotbar slots
@@ -31,22 +40,77 @@ public class Inventory : MonoBehaviour
         combinedSlots.AddRange(hotbarSlots);
     }
 
+    private void Start()
+    {
+        // Make sure inventory starts closed
+        inventoryContainer.SetActive(false);
+
+        // Enable player camera movement at start
+        FirstPersonController.Instance.updateRotation = true;
+
+        // Lock and hide cursor initially
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            AddItem(axeItem, 1);
 
-        }
-        else if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-            AddItem(meatItem, 3);
+            /*inventoryContainer.SetActive(!inventoryContainer.activeInHierarchy); // Open/Close Inventory screen
+            
+            // Pop up cursor when inventory is opened, cursor disappears when inventory is closed
+            if (Cursor.lockState == CursorLockMode.Locked)
+            {
+                Cursor.lockState = CursorLockMode.None;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            Cursor.visible = !Cursor.visible;
+            FirstPersonController.Instance.updateRotation = !FirstPersonController.Instance.updateRotation;*/
+            bool isOpen = !inventoryContainer.activeInHierarchy;
+            inventoryContainer.SetActive(isOpen);
+
+            if (isOpen)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+                FirstPersonController.Instance.updateRotation = false;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                FirstPersonController.Instance.updateRotation = true;
+
+                // Reset the dragging
+                CancelDrag();
+            }
         }
+
+        if (!inventoryContainer.activeInHierarchy && isDragging)
+        {
+            CancelDrag();
+        }
+
+        DetectLookedAtItem();
+        Pickup();
 
         StartDrag();
         HandleDragIconPosition();
         EndDrag();
+    }
+
+    private void CancelDrag()
+    {
+        // Reset the dragging
+        isDragging = false;
+        draggedSlot = null;
+        dragIcon.enabled = false;
     }
 
     public void AddItem(ItemSO item, int amount)
@@ -216,6 +280,53 @@ public class Inventory : MonoBehaviour
         if (isDragging)
         {
             dragIcon.transform.position = Input.mousePosition;
+        }
+    }
+
+    private void Pickup()
+    {
+        if (lookedAtRenderer != null && Input.GetKeyDown(KeyCode.E))
+        {
+            Item item = lookedAtRenderer.GetComponent<Item>();
+
+            if (item != null)
+            {
+                AddItem(item.item, item.amount);
+                Destroy(item.gameObject);
+            }
+        }
+    }
+
+    private void DetectLookedAtItem()
+    {
+        // If an item was highlighted before, remove the highlight
+        if (lookedAtRenderer != null){
+            lookedAtRenderer.material = originalMaterial;
+            lookedAtRenderer = null;
+            originalMaterial = null;
+        }
+
+        // Shoot a ray from camera's forward direction
+        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+
+        // Checks if ray hits anything withing the pickup range
+        if (Physics.Raycast(ray, out RaycastHit hit, pickupRange))
+        {
+            Item item = hit.collider.GetComponent<Item>();
+            
+            if (item != null)
+            {
+                
+                Renderer rend = item.GetComponent<Renderer>();
+                
+                // If the item has renderer, give highlight
+                if (rend != null)
+                {
+                    originalMaterial = rend.material;
+                    rend.material = highlightMaterial;
+                    lookedAtRenderer = rend;
+                }
+            }
         }
     }
 }
