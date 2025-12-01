@@ -74,6 +74,7 @@ namespace EasyPeasyFirstPersonController
         private float tiltVelocity;
 
         public float CurrentCameraHeight => isCrouching || isSliding ? crouchCameraHeight : originalCameraParentHeight;
+        public float stamina = 20;
 
         private void Awake()
         {
