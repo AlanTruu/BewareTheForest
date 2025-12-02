@@ -2,7 +2,7 @@
 
 ## Group Members:
 1. Brian Madott
-2. Alan Truoung
+2. Alan Truong
 3. Andy Nguyen
 4. Nathan Meza
 
