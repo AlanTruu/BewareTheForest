@@ -19,6 +19,11 @@ Player:
 + Player Movement
 + Player HP/Hunger meter + UI
 
+Item Functionalities:
++ Hatchet - Left click to swing
++ Base Camp/ Torch - Lights up the area
++ Meat - Heals player's Hunger Bar + HP
+
 Enemies:
 + Navmesh AI that follows player
 
@@ -34,6 +39,7 @@ Prefabs:
 + Hatchet
 + Logs
 + Meat
++ Torch
 + etc
 
 
@@ -42,7 +48,7 @@ Prefabs:
 ## General Goals for each person (may change):
 1. Brian - Inventory system + crafting
 2. Alan -
-3. Andy -
+3. Andy - 
 4. Nathan - 
 
 ## Video Demo for Halway project review:
