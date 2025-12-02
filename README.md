@@ -47,8 +47,8 @@ Prefabs:
 
 ## General Goals for each person (may change):
 1. Brian - Inventory system + crafting
-2. Alan -
-3. Andy - 
+2. Alan - Enemy AI + Player Movement
+3. Andy - Part of Level Design (prefabs) + Base camp
 4. Nathan - 
 
 ## Video Demo for Halway project review:
