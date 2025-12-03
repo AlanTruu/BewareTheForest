@@ -49,6 +49,6 @@ Prefabs:
 1. Brian - Inventory system + crafting
 2. Alan - Enemy AI + Player Movement
 3. Andy - Part of Level Design (prefabs) + Base camp
-4. Nathan - 
+4. Nathan - Item functionality + Menus
 
 ## Video Demo for Halway project review:
