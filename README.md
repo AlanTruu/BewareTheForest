@@ -60,6 +60,6 @@ Prefabs:
 3. Andy - Part of Level Design (prefabs) + Base camp
 4. Nathan - Item functionality + Menus
 
-## Video Demo for Halway project review (what we curently have so far):
+## Video Demo for Halfway project review (what we curently have so far):
 https://youtu.be/WbvzFHoVkHo 
 
