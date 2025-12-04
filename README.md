@@ -52,3 +52,4 @@ Prefabs:
 4. Nathan - Item functionality + Menus
 
 ## Video Demo for Halway project review:
+https://youtu.be/WbvzFHoVkHo
