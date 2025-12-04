@@ -17,6 +17,8 @@ public class Wolf : MonoBehaviour
     public WolfChase wolf_chase;
     public WolfAttack wolf_attack;
 
+    public bool can_attack = true;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -51,5 +53,14 @@ public class Wolf : MonoBehaviour
         current_state.OnEnter();
     }
 
+    public void reset_can_attack()
+    {
+        can_attack = true;
+    }
+
+    public void call_reset_attack(float cooldown)
+    {
+        Invoke("reset_can_attack", cooldown);
+    }
 
 }
