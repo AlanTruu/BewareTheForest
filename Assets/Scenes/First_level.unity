@@ -2891,6 +2891,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5339459066576026095, guid: 6ca47d103354358428abaf02a2a2e617, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: be642fa13b2f77d439255da8567c4bfe, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2898,6 +2902,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3770104327968998215, guid: 6ca47d103354358428abaf02a2a2e617, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1128189921}
+    - targetCorrespondingSourceObject: {fileID: 3770104327968998215, guid: 6ca47d103354358428abaf02a2a2e617, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1128189925}
   m_SourcePrefab: {fileID: 100100000, guid: 6ca47d103354358428abaf02a2a2e617, type: 3}
 --- !u!1 &1128189920 stripped
 GameObject:
@@ -2916,11 +2923,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7051a84120122ca4fb5021195143802c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Wolf
+  agent: {fileID: 0}
+  animator: {fileID: 0}
   player_Character: {fileID: 585431102}
   terrain_Layer:
     serializedVersion: 2
     m_Bits: 64
   patrol_range: 5
+--- !u!65 &1128189925
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128189920}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2, z: 3}
+  m_Center: {x: 0, y: 1.2, z: 0.2}
 --- !u!1 &1218271684 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c5611f22a4078e4429b2694e6f0b9ea8, type: 3}
