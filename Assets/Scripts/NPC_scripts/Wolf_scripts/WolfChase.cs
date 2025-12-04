@@ -19,7 +19,7 @@ public class WolfChase : IState
     public void Tick()
     {
         _animator.SetFloat("speed", _agent.velocity.magnitude);
-        
+
         float distance = Vector3.Distance(_wolf.transform.position, _wolf.player_Character.transform.position);
 
         //Keep chasing if within 6-10 meters
@@ -46,6 +46,7 @@ public class WolfChase : IState
     public void OnEnter()
     {
         _agent.SetDestination(_wolf.player_Character.position);
+        _animator.SetInteger("state", 1);
         Debug.Log("Entering chase");
     }
 
