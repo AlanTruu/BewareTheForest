@@ -18,12 +18,17 @@ public class WolfAttack : IState
     public void Tick()
     {
         // _animator.SetFloat("speed", _agent.velocity.magnitude);
-        
+
         float distance = Vector3.Distance(_wolf.transform.position, _wolf.player_Character.transform.position);
-        
+
         if (distance <= 3f)
         {
-            // attack here 
+            if (_wolf.can_attack)
+            {
+                _animator.SetTrigger("attack_trigger");
+                _wolf.can_attack = false;
+                _wolf.call_reset_attack(2f);
+            }
         }
         else if (distance < 10f)
         {
@@ -40,12 +45,10 @@ public class WolfAttack : IState
     public void OnEnter()
     {
         _animator.SetInteger("state", 2);
-        Debug.Log("Entered attack, state should be 2");
-        Debug.Log(_animator.GetInteger("state"));
     }
     public void OnExit()
     {
-        
+
     }
 
 }
