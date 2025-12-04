@@ -43,6 +43,9 @@ public class WolfAttack : IState
         Debug.Log("Entered attack, state should be 2");
         Debug.Log(_animator.GetInteger("state"));
     }
-    public void OnExit() { }
+    public void OnExit()
+    {
+        
+    }
 
 }
