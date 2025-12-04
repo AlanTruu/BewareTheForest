@@ -4,37 +4,26 @@ using UnityEngine.AI;
 
 public class Wolf : MonoBehaviour
 {
-    private StateMachine machine;
+    public NavMeshAgent agent;
+    public Animator animator;
     [SerializeField] public Transform player_Character;
-    NavMeshAgent agent;
-    Animator animator;
     [SerializeField] public LayerMask terrain_Layer;
 
     public float patrol_range = 5f;
+
+    //States
+    private IState current_state;
+    public WolfPatrol wolf_patrol;
+    public WolfChase wolf_chase;
+    public WolfAttack wolf_attack;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        machine = new StateMachine();
-
-        //Instantiate States
-        var wolf_patrol = new WolfPatrol(this, agent, animator);
-        var wolf_chase = new WolfChase(this, agent, animator);
-        //Need transitions for:
-        //Patrol <-> Chasing
-        //Chasing <-> Attacking
-
-        machine.SetState(wolf_patrol);
-
-        //Idle State needs animator
-        //Patrol needs this, navmesh, animator
-        //Attack needs this, navmesh, animator
-        add_transition(wolf_patrol, wolf_chase, detect_player);
-        add_transition(wolf_chase, wolf_patrol, () => !detect_player());
-
-        //need lambda to check for distance between player and this
-        bool detect_player() => Vector3.Distance(transform.position, player_Character.position) < 5f;
+        wolf_patrol = new WolfPatrol(this, agent, animator);
+        wolf_chase = new WolfChase(this, agent, animator);
+        wolf_attack = new WolfAttack(this, agent, animator);
     }
     void Start()
     {
@@ -42,21 +31,25 @@ public class Wolf : MonoBehaviour
         //wolf begins its life patrolling
         if (animator != null)
         {
-            animator.SetBool("isPatrolling", true);
+            // animator.SetBool("isPatrolling", true);
+            animator.SetInteger("state", 1);
         }
+
+        current_state = wolf_patrol;
     }
 
     // Update is called once per frame
     void Update()
     {
-        machine.Tick();
+        current_state.Tick();
     }
 
-    void add_transition(IState from, IState to, Func<bool> condition)
+    public void switch_state(IState state)
     {
-        machine.AddTransition(from, to, condition);
+        current_state.OnExit();
+        current_state = state;
+        current_state.OnEnter();
     }
 
-    
-    
+
 }

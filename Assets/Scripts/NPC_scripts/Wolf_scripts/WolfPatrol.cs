@@ -5,13 +5,15 @@ using UnityEngine.AI;
 
 public class WolfPatrol : IState
 {
-    Wolf _wolf;
-    NavMeshAgent _agent;
-    Animator _animator;
+    private Wolf _wolf;
+    private NavMeshAgent _agent;
+    private Animator _animator;
 
-    Vector3 patrol_point;
-    Vector3 last_point;
-    bool has_point = false;
+    private Vector3 patrol_point;
+    private Vector3 last_point;
+    private bool has_point = false;
+
+
     public WolfPatrol(Wolf wolf, NavMeshAgent agent, Animator animator)
     {
         _wolf = wolf;
@@ -23,10 +25,19 @@ public class WolfPatrol : IState
     {
         patrol();
 
+        //initiate chase when player is within 10 meters
+        if (Vector3.Distance(_wolf.transform.position, _wolf.player_Character.transform.position) < 10f)
+        {
+            _wolf.switch_state(_wolf.wolf_chase);
+        }
     }
 
     public void OnEnter()
     {
+        // _animator.SetBool("inAttackingRange", false);
+        // _animator.SetBool("isPatrolling", true);
+
+        _animator.SetInteger("state", 1);
     }
 
     public void OnExit()
