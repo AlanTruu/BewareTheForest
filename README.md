@@ -6,7 +6,8 @@
 3. Andy Nguyen
 4. Nathan Meza
 
-## Game Description:
+## Game Description (As of now / May Change):
+A survival (somewhat horror?) game where a player enters a forest trying to find missing children while running away from a monster that spawn during the night. During the day, the player will have to gather food resources (from animals like wolf) to keep the Hunger meter full and recover Health bar. The player will also have to chop trees to collect woods/logs to create a camping fire at the base to prevent the monster from approaching at night. The collected materials will be stored in an inventory backpack and can be used to craft weapons. The player wins if they manage to find all of the missing children. The player will lose if they lose all of their health. 
 
 Scene:
 + Level Design (terrain, buildings, etc)
@@ -20,12 +21,12 @@ Player:
 + Player HP/Hunger meter + UI
 
 Item Functionalities:
-+ Hatchet - Left click to swing
++ Hatchet - Left click to swing and chop trees
 + Base Camp/ Torch - Lights up the area
 + Meat - Heals player's Hunger Bar + HP
 
 Enemies:
-+ Navmesh AI that follows player
++ Navmesh AI that follows player + animation
 
 Inventory:
 + Pick up prefab items
@@ -35,7 +36,7 @@ Inventory:
 + Equip item on a hand
 
 Prefabs:
-+ Choppable Tree
++ Choppable Tree 
 + Hatchet
 + Logs
 + Meat
@@ -43,7 +44,15 @@ Prefabs:
 + etc
 
 
-
+## Mechanics:
++ E - pick up items/prefabs
++ Q - Drop items from inventory hotbar
++ Tab - open inventory
++ WASD - Player movement
++ Shift - sprint
++ Ctrl - Crouch
++ 1, 2, 3, 4, 5, 6 - Respective hotbar slot positions
++ Left click or right click to activate item functionality when equipped?
 
 ## General Goals for each person (may change):
 1. Brian - Inventory system + crafting
@@ -51,5 +60,6 @@ Prefabs:
 3. Andy - Part of Level Design (prefabs) + Base camp
 4. Nathan - Item functionality + Menus
 
-## Video Demo for Halway project review:
-https://youtu.be/WbvzFHoVkHo
+## Video Demo for Halway project review (what we curently have so far):
+https://youtu.be/WbvzFHoVkHo 
+
