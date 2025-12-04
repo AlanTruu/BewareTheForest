@@ -18,6 +18,11 @@ public class Inventory : MonoBehaviour
     private Slot draggedSlot = null;
     private bool isDragging = false;
 
+    // Hotbar variables
+    private int hotbarIndex = 0; // 0 - 5 (1-6 on keyboard)
+    public float equippedOpacity = 0.9f;
+    public float defaultOpacity = 0.5f;
+
     // Variables for picking up prefabs
     public float pickupRange = 3f;
     private Item lookedAtItem = null;
@@ -103,6 +108,11 @@ public class Inventory : MonoBehaviour
         StartDrag();
         HandleDragIconPosition();
         EndDrag();
+
+        // Call Hotbar functions
+        HotBarSelection();
+        DropEquippedItem();
+        UpdateHotbarOpacity();
     }
 
     private void CancelDrag()
@@ -328,5 +338,78 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+    }
+
+    // ----------- HOTBAR FUNCTIONS ----------------
+
+    // Function: Change hotbar slot color when the player is on it
+    private void UpdateHotbarOpacity()
+    {
+        // Check each hotbar slots
+        for (int i = 0; i < hotbarSlots.Count; i++)
+        {
+            Image icon = hotbarSlots[i].GetComponent<Image>();
+
+            // If the current slot is the player's equipped hotbar index, update opacity color
+            if (i == hotbarIndex)
+            {
+                icon.color = new Color(1, 1, 1, equippedOpacity);
+            }
+            else
+            {
+                icon.color = new Color(1, 1, 1, defaultOpacity);
+            }
+
+        }
+    }
+
+    private void HotBarSelection()
+    {
+        // Iterate through each hotbar slot and choose specific slot
+        for (int i = 0; i < 6; i++)
+        {
+            // Update the slot color if hotbar keys (1-6) are pressed
+            if (Input.GetKeyDown((i + 1).ToString()))
+            {
+                hotbarIndex = i;
+                UpdateHotbarOpacity();
+            }
+        }
+    }
+
+    private void DropEquippedItem()
+    {
+        // Return if Q isn't pressed
+        if (!Input.GetKeyDown(KeyCode.Q))
+        {
+            return;
+        }
+
+        Slot equippedSlot = hotbarSlots[hotbarIndex];
+
+        // Return if item does not exist in the equipped slot
+        if (!equippedSlot.HasItem())
+        {
+            return;
+        }
+
+        ItemSO currentItem = equippedSlot.GetItem();
+        GameObject prefab = currentItem.itemPrefab;
+
+        // Return if there is no prefab on this item
+        if (prefab == null)
+        {
+            return;
+        }
+
+        // Instantiate (drop) the item a little bit forward of the player
+        GameObject dropItem = Instantiate(prefab, Camera.main.transform.position + Camera.main.transform.forward, Quaternion.identity);
+
+
+        Item recordItem = dropItem.GetComponent<Item>();
+        recordItem.item = currentItem;
+        recordItem.amount = equippedSlot.GetAmount();
+
+        equippedSlot.ClearSlot();
     }
 }
