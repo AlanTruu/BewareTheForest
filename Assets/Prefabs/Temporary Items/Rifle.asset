@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f813ac4a9a7028447a6c581de7ea6c6c, type: 3}
-  m_Name: Meat
+  m_Name: Rifle
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Meat
-  icon: {fileID: 21300000, guid: 942d2eee8bd22b949aa941a437e90ab3, type: 3}
-  maxStackSize: 10
-  itemPrefab: {fileID: 6041769610356784855, guid: 614e06daf6c22484ebb8033795887688, type: 3}
+  itemName: Rifle
+  icon: {fileID: 21300000, guid: f0eaa0110f94da443ac102f09290e255, type: 3}
+  maxStackSize: 1
+  itemPrefab: {fileID: 5911881463437796716, guid: 8f6410c1b54e68d49a6c3f8a24a30bb5, type: 3}
   heldItemPrefab: {fileID: 0}
