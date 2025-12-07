@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerData : MonoBehaviour
+public class PlayerData : MonoBehaviour, ILife
 {
     private float health = 100f;
     private Slider health_slider;
@@ -33,15 +33,20 @@ public class PlayerData : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
 
     }
 
     //reduce health and set the value of the health slider
-    public void take_damage(float dmg, string source)
+    public void take_damage(float dmg, string source = null)
     {
-        
+
         health -= dmg;
         health_slider.value = health;
+    }
+
+    public void die()
+    {
+
     }
 }
