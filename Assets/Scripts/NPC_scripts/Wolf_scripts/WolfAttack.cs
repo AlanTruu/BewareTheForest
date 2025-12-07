@@ -34,13 +34,7 @@ public class WolfAttack : IState
         {
             if (_wolf.can_attack)
             {
-                _animator.SetTrigger("attack_trigger");
-                _wolf.can_attack = false;
-                _wolf.call_reset_attack(2f);
-
-                //Check if wolf landed attack, or do damage as long as player was in range?
-                //For now, player will take damage as long as this if branch is taken
-                player_data.take_damage(3f, "Wolf");
+                attack();
             }
         }
         //if player is not within 3 but is within 10 units, switch back to chasing
@@ -64,6 +58,14 @@ public class WolfAttack : IState
     public void OnExit()
     {
 
+    }
+
+    public void attack()
+    {
+        _animator.SetTrigger("attack_trigger");
+        player_data.take_damage(3f, "Wolf");
+        _wolf.can_attack = false;
+        _wolf.call_reset_attack(2f); 
     }
 
 }
