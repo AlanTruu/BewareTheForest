@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f813ac4a9a7028447a6c581de7ea6c6c, type: 3}
-  m_Name: Axe
+  m_Name: Axe_old
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Axe
+  itemName: Axe_old
   icon: {fileID: 21300000, guid: 8393ed8093d689f40b34df85b2c92ed1, type: 3}
   maxStackSize: 1
-  itemPrefab: {fileID: 7576963271496636832, guid: 3e6b8e4e1d8482d44a368ef7b720f81d, type: 3}
+  itemPrefab: {fileID: 5053342959752745656, guid: 8980a1fe58189064ca07b2cfe4641998, type: 3}
   heldItemPrefab: {fileID: 0}
