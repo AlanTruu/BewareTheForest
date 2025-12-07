@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Axe_new
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   itemName: Axe_new
-  icon: {fileID: 21300000, guid: 8393ed8093d689f40b34df85b2c92ed1, type: 3}
+  icon: {fileID: 21300000, guid: 074d8a3133eb26046bae5f4e37be1a5f, type: 3}
   maxStackSize: 1
   itemPrefab: {fileID: 4065788758820551286, guid: 8c8f94536ff571f43b924670e8335992, type: 3}
   heldItemPrefab: {fileID: 0}
