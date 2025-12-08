@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Meat
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   itemName: Meat
-  icon: {fileID: 21300000, guid: 4cc91dd868b37174f86d7fd35d3d2191, type: 3}
+  icon: {fileID: 21300000, guid: 942d2eee8bd22b949aa941a437e90ab3, type: 3}
   maxStackSize: 10
-  itemPrefab: {fileID: 2460701920806802868, guid: 9be7ce139d1e0454eaaf80badc88809e, type: 3}
-  heldItemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 6041769610356784855, guid: 614e06daf6c22484ebb8033795887688, type: 3}
+  heldItemPrefab: {fileID: 1799300995393742447, guid: e9788dfdbc2ff7c4e92732019bf78f3d, type: 3}

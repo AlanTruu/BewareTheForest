@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f813ac4a9a7028447a6c581de7ea6c6c, type: 3}
-  m_Name: Axe
+  m_Name: Flashlight_new
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
-  itemName: Axe
-  icon: {fileID: 21300000, guid: 8393ed8093d689f40b34df85b2c92ed1, type: 3}
+  itemName: Flashlight_new
+  icon: {fileID: 21300000, guid: e016c74c1626fb8479119c3922c96b21, type: 3}
   maxStackSize: 1
-  itemPrefab: {fileID: 7576963271496636832, guid: 3e6b8e4e1d8482d44a368ef7b720f81d, type: 3}
-  heldItemPrefab: {fileID: 0}
+  itemPrefab: {fileID: 7857166589307614179, guid: 53fbeb418fd1323429190d2c408ec063, type: 3}
+  heldItemPrefab: {fileID: 7838393628099424787, guid: ca492b0f90abd8b4291ebda926663603, type: 3}

@@ -9,14 +9,15 @@ public class Follower_script : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        if (player)
+        {
+            agent.SetDestination(player.position);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (player)
-        {
-            agent.SetDestination(player.position);
-        }
+        
     }
 }
