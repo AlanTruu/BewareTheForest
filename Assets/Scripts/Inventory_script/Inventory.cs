@@ -23,6 +23,10 @@ public class Inventory : MonoBehaviour
     public float equippedOpacity = 0.9f;
     public float defaultOpacity = 0.5f;
 
+    // Equip item variables
+    public Transform hand;
+    private GameObject currentHandItem;
+
     // Variables for picking up prefabs
     public float pickupRange = 3f;
     private Item lookedAtItem = null;
@@ -303,6 +307,7 @@ public class Inventory : MonoBehaviour
             {
                 AddItem(item.item, item.amount);
                 Destroy(item.gameObject);
+                EquipHandItem();
             }
         }
     }
@@ -373,6 +378,7 @@ public class Inventory : MonoBehaviour
             {
                 hotbarIndex = i;
                 UpdateHotbarOpacity();
+                EquipHandItem();
             }
         }
     }
@@ -411,5 +417,35 @@ public class Inventory : MonoBehaviour
         recordItem.amount = equippedSlot.GetAmount();
 
         equippedSlot.ClearSlot();
+
+        EquipHandItem();
+    }
+
+    private void EquipHandItem()
+    {
+        // Destroy previously held item
+        if (currentHandItem != null)
+        {
+            Destroy(currentHandItem);
+        }
+
+        Slot currentSlot = hotbarSlots[hotbarIndex];
+
+        // Return if the current slot does not have an item
+        if (!currentSlot.HasItem())
+        {
+            return;
+        }
+
+        ItemSO item = currentSlot.GetItem();
+
+        // Return if this item does not have prefab ready for equip on player's hand
+        if (item.heldItemPrefab == null)
+        {
+            return;
+        }
+
+        currentHandItem = Instantiate(item.heldItemPrefab, hand);
+        currentHandItem.transform.localPosition = Vector3.zero;
     }
 }
