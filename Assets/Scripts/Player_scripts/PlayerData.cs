@@ -33,7 +33,7 @@ public class PlayerData : MonoBehaviour, ILife
     // Update is called once per frame
     void Update()
     {
-
+        health_slider.value = health;
 
     }
 

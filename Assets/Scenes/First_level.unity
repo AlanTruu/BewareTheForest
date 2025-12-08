@@ -23,10 +23,10 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0.68
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 3ed3f329a513c45a4abc7bf9f4eb640a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -35,7 +35,7 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
@@ -127,6 +127,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 113887296268519955, guid: d66b75c0dffcd4c4d8d44c56c2b35f66, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8310957318743709717, guid: d66b75c0dffcd4c4d8d44c56c2b35f66, type: 3}
       propertyPath: m_Name
       value: FlashlightOldPrefab
@@ -1353,7 +1357,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5000
+  m_ColorTemperature: 20000
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -2200,6 +2204,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6571622885434934419, guid: 53fbeb418fd1323429190d2c408ec063, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7368332981851597145, guid: 53fbeb418fd1323429190d2c408ec063, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.903
@@ -2246,11 +2254,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8431621299440575650, guid: 53fbeb418fd1323429190d2c408ec063, type: 3}
       propertyPath: m_Size.x
-      value: 0.11222231
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8431621299440575650, guid: 53fbeb418fd1323429190d2c408ec063, type: 3}
       propertyPath: m_Size.y
-      value: 0.17724918
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 8431621299440575650, guid: 53fbeb418fd1323429190d2c408ec063, type: 3}
       propertyPath: m_Size.z
@@ -2258,7 +2266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8431621299440575650, guid: 53fbeb418fd1323429190d2c408ec063, type: 3}
       propertyPath: m_Center.x
-      value: 0.035612788
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8431621299440575650, guid: 53fbeb418fd1323429190d2c408ec063, type: 3}
       propertyPath: m_Center.y
@@ -5800,6 +5808,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1603414124359286608, guid: e9788dfdbc2ff7c4e92732019bf78f3d, type: 3}
+      propertyPath: hand
+      value: 
+      objectReference: {fileID: 269814117}
     - target: {fileID: 1799300995393742447, guid: e9788dfdbc2ff7c4e92732019bf78f3d, type: 3}
       propertyPath: m_Name
       value: MeatPrefab_hand
