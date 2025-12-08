@@ -12,6 +12,9 @@ public class WolfPatrol : IState
     private Vector3 patrol_point;
     private Vector3 last_point;
     private bool has_point = false;
+    public float detection_radius = 10f;
+    public float check_sphere_cd = 0.3f;
+    public float check_sphere_meter;
 
 
     public WolfPatrol(Wolf wolf, NavMeshAgent agent, Animator animator)
@@ -19,6 +22,7 @@ public class WolfPatrol : IState
         _wolf = wolf;
         _agent = agent;
         _animator = animator;
+        check_sphere_meter = check_sphere_cd;
     }
 
     public void Tick()
@@ -26,18 +30,49 @@ public class WolfPatrol : IState
         patrol();
 
         //initiate chase when player is within 10 meters
-        if (Vector3.Distance(_wolf.transform.position, _wolf.player_Character.transform.position) < 10f)
+        // if (Vector3.Distance(_wolf.transform.position, _wolf.target.transform.position) < 10f)
+        // {
+        //     _wolf.switch_state(_wolf.wolf_chase);
+        // }
+
+        //new logic: call physics.overlapbox every check_sphere_cd seconds for prey
+        if (check_sphere_meter <= 0)
         {
-            _wolf.switch_state(_wolf.wolf_chase);
+            Collider[] hits = Physics.OverlapSphere(_wolf.transform.position, detection_radius, _wolf.prey_layer);
+
+            if (hits.Length > 0)
+            {
+
+                //check if any hits were either the player or a prey
+                foreach (var hit in hits)
+                {
+                    if (hit.CompareTag("Player") || hit.CompareTag("Prey"))
+                    {
+                        _wolf.target = hit.transform;
+                        check_sphere_meter = check_sphere_cd; //reset meter since returning early
+                        _wolf.switch_state(_wolf.wolf_chase);
+                        return;
+                    }
+                }
+            }
+
+            //reset cooldown
+            check_sphere_meter = check_sphere_cd;
+        }
+        else
+        {
+            //cooldown in process...
+            check_sphere_meter -= Time.deltaTime;
         }
     }
 
     public void OnEnter()
     {
-        // _animator.SetBool("inAttackingRange", false);
-        // _animator.SetBool("isPatrolling", true);
-
         _animator.SetInteger("state", 1);
+        
+        //reset any targets and booleans
+        has_point = false; //reset to false in case has_point was never reset after being marked true
+        _wolf.target = null;
     }
 
     public void OnExit()
@@ -80,7 +115,7 @@ public class WolfPatrol : IState
 
         if (Vector3.Distance(_wolf.transform.position, patrol_point) < 1f)
         {
-            has_point = false;
+            has_point = false; //must be careful with this in case patrol ever gets interrupted
         }
     }
 }

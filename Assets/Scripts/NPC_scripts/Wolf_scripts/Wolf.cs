@@ -6,8 +6,9 @@ public class Wolf : MonoBehaviour
 {
     public NavMeshAgent agent;
     public Animator animator;
-    [SerializeField] public Transform player_Character;
+    public Transform target = null;
     [SerializeField] public LayerMask terrain_Layer;
+    [SerializeField] public LayerMask prey_layer;
 
     public float patrol_range = 5f;
 

@@ -7,20 +7,41 @@ public class RabbitWander : IState
     private Vector3 wander_point;
     private Vector3 last_point;
     private bool has_point = false;
-
-
     private NavMeshAgent _agent;
+
+
+    //Rabbit should wander with every x seconds
+    public float wander_cooldown = 2f;
+    private float wander_delay;
+
+
 
     public RabbitWander(Rabbit rabbit)
     {
         _rabbit = rabbit;
         _agent = _rabbit.GetComponent<NavMeshAgent>();
+        wander_delay = wander_cooldown;
     }
 
 
     public void Tick()
     {
-        wander();
+
+        //let rabbit wander with 2 sec delay
+        if (wander_delay <= 0)
+        {
+            wander();
+            wander_delay = wander_cooldown;
+        }
+        else
+        {
+            wander_delay -= Time.deltaTime;
+        }
+
+        if (_rabbit.attacked)
+        {
+            //switch state here
+        }
     }
     public void OnEnter()
     {
@@ -52,6 +73,11 @@ public class RabbitWander : IState
                 _agent.SetDestination(wander_point);
                 last_point = wander_point;
             }
+        }
+
+        if (Vector3.Distance(_rabbit.transform.position, wander_point) < 1f)
+        {
+            has_point = false;
         }
 
     }

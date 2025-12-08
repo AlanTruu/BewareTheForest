@@ -16,7 +16,7 @@ public interface ILife
 
     public void take_damage(float damage, string source = null) 
     {
-
+        
     }
 
     public void die()
