@@ -446,6 +446,6 @@ public class Inventory : MonoBehaviour
         }
 
         currentHandItem = Instantiate(item.heldItemPrefab, hand);
-        currentHandItem.transform.localPosition = Vector3.zero;
+        //currentHandItem.transform.localPosition = Vector3.zero;
     }
 }

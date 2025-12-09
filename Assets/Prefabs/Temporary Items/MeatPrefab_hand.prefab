@@ -42,8 +42,6 @@ GameObject:
   - component: {fileID: 5183502297410084991}
   - component: {fileID: 1340597491902680690}
   - component: {fileID: 6273510542085464415}
-  - component: {fileID: 6817535139564858369}
-  - component: {fileID: 7095290212759318390}
   - component: {fileID: 1603414124359286608}
   m_Layer: 0
   m_Name: MeatPrefab_hand
@@ -61,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 1799300995393742447}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.592649, y: 74.882, z: 900.7997}
+  m_LocalPosition: {x: 0.038, y: -0.036, z: -0.077}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -131,54 +129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   item: {fileID: 11400000, guid: 1791ebf77c1cc3d48b1972fe239c3935, type: 2}
   amount: 1
---- !u!54 &6817535139564858369
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799300995393742447}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!65 &7095290212759318390
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1799300995393742447}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.74, y: 2.93, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1603414124359286608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72cf15c98d36e45e38a4896aa6ade181, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  hand: {fileID: 0}
 --- !u!1 &4566900954683092408
 GameObject:
   m_ObjectHideFlags: 0
