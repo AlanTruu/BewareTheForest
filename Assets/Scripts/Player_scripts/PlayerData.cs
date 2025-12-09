@@ -38,7 +38,7 @@ public class PlayerData : MonoBehaviour, ILife
     }
 
     //reduce health and set the value of the health slider
-    public void take_damage(float dmg, string source = null)
+    public void take_damage(float dmg, Transform source = null)
     {
 
         health -= dmg;

@@ -2,8 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Wolf : MonoBehaviour
+public class Wolf : MonoBehaviour, ILife
 {
+    public float health = 10f;
     public NavMeshAgent agent;
     public Animator animator;
     public Transform target = null;
@@ -62,6 +63,21 @@ public class Wolf : MonoBehaviour
     public void call_reset_attack(float cooldown)
     {
         Invoke("reset_can_attack", cooldown);
+    }
+
+    public void take_damage(float damage, Transform source = null)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            die();
+        }
+    }
+
+    public void die()
+    {
+        Destroy(this.gameObject);
     }
 
 }

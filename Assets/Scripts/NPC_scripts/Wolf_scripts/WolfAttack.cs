@@ -47,9 +47,10 @@ public class WolfAttack : IState
                 }
             }
             //if player is not within 3 but is within 10 units, switch back to chasing
-            else if (distance < 10f)
+            //Must make use of is_alive functions, because the destruction of a life might be delayed
+            else if (distance < 10f && target_life.is_alive())
             {
-
+                Debug.Log("Reverting back to chase state");
                 _wolf.switch_state(_wolf.wolf_chase);
             }
         }
@@ -69,7 +70,7 @@ public class WolfAttack : IState
     public void attack()
     {
         _animator.SetTrigger("attack_trigger");
-        target_life.take_damage(3f, "Wolf");
+        target_life.take_damage(3f, _wolf.transform);
         _wolf.can_attack = false;
         _wolf.call_reset_attack(2f);
     }

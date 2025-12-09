@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,7 +8,9 @@ public class RabbitWander : IState
     private Vector3 wander_point;
     private Vector3 last_point;
     private bool has_point = false;
+    public bool attacked = false;
     private NavMeshAgent _agent;
+    private Animator _animator;
 
 
     //Rabbit should wander with every x seconds
@@ -20,32 +23,43 @@ public class RabbitWander : IState
     {
         _rabbit = rabbit;
         _agent = _rabbit.GetComponent<NavMeshAgent>();
+        _animator = _rabbit.GetComponent<Animator>();
         wander_delay = wander_cooldown;
     }
 
 
     public void Tick()
     {
-
         //let rabbit wander with 2 sec delay
         if (wander_delay <= 0)
         {
             wander();
             wander_delay = wander_cooldown;
+
+            //wabbit should be using the run animation here
+            _animator.SetBool("isMoving", true);
         }
         else
         {
+            //rabbit idles here
             wander_delay -= Time.deltaTime;
+            _animator.SetBool("isMoving", false);
         }
 
-        if (_rabbit.attacked)
+        if (attacked)
         {
-            //switch state here
+            //switch_state here
+            Debug.Log("Should runaway here!");
+            _rabbit.switch_state(_rabbit.rabbit_run);
         }
+
+
     }
     public void OnEnter()
     {
-
+        attacked = false;
+        has_point = false;
+        _rabbit.attacker = null;
     }
     public void OnExit()
     {

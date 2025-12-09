@@ -52,6 +52,6 @@ public class WolfChase : IState
 
     public void OnExit()
     {
-        
+
     }
 }

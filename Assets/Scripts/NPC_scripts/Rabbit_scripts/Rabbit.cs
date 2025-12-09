@@ -1,28 +1,33 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class Rabbit : MonoBehaviour, ILife
 {
     public float health = 9f;
     public NavMeshAgent agent;
     public Animator animator;
+    public float wander_range = 3f;
+    public Transform attacker = null;
     [SerializeField] public LayerMask terrain_Layer;
-    public float wander_range = 2f;
-    public bool attacked = false;
 
 
 
     //States
     public IState current_state;
     public RabbitWander rabbit_wander;
-
-
+    public RabbitRun rabbit_run;
 
     void Awake()
     {
+
+        //initialize component references and speed
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        //Instantiate states
         rabbit_wander = new RabbitWander(this);
+        rabbit_run = new RabbitRun(this);
         current_state = rabbit_wander;
     }
 
@@ -50,14 +55,11 @@ public class Rabbit : MonoBehaviour, ILife
         current_state.OnEnter();
     }
 
-    public void take_damage(float damage, string source = null)
+    public void take_damage(float damage, Transform source = null)
     {
-        if (!attacked)
-        {
-            attacked = true;
-        }
-
         health -= damage;
+        rabbit_wander.attacked = true;
+        attacker = source;
 
         if (health <= 0)
         {
@@ -67,6 +69,18 @@ public class Rabbit : MonoBehaviour, ILife
 
     public void die()
     {
+        animator.SetTrigger("isDie");
+        StartCoroutine(Death());
+    }
+
+    public bool is_alive()
+    {
+        return health > 0;
+    }
+
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(1.34f);
         Destroy(this.gameObject);
     }
 }
