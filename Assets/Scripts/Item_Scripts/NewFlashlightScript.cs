@@ -4,14 +4,14 @@ public class NewFlashlightScript : MonoBehaviour
 {
     private Rigidbody rb;
     private bool isHeld = false;
-    public Light light;
+    public Light flashLight;
     
     void Start()
     {
-        light = light.GetComponent<Light>();
+        flashLight = flashLight.GetComponent<Light>();
 
-        if (light != null)
-            light.enabled = false;
+        if (flashLight != null)
+            flashLight.enabled = false;
     }
     
     void Update()
@@ -44,12 +44,12 @@ public class NewFlashlightScript : MonoBehaviour
 
     void DoAction()
     {
-        Debug.Log("Flashlight turned on!");
+        Debug.Log("FlashflashLight turned on!");
         // Replace this with action
-        if (light != null)
+        if (flashLight != null)
             {
-                light.enabled = !light.enabled; // toggle
-                Debug.Log("Flashlight " + (light.enabled ? "ON" : "OFF"));
+                flashLight.enabled = !flashLight.enabled; // toggle
+                Debug.Log("FlashflashLight " + (flashLight.enabled ? "ON" : "OFF"));
             }
     }
 

@@ -245,4 +245,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d08b03aa1af40ebbc7f43502c017ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewFlashlightScript
-  light: {fileID: 1037797096949300330}
+  flashLight: {fileID: 1037797096949300330}
