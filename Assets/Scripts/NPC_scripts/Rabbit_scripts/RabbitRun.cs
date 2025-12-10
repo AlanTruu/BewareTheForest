@@ -5,13 +5,15 @@ using UnityEngine.AI;
 
 public class RabbitRun : IState
 {
+    //References
     private Rabbit _rabbit;
     private NavMeshAgent _agent;
     private Animator _animator;
 
+
+    //Logic
     private float threat_distance = 20f;
     private float run_distance = 15f;
-
     private Vector3 flee_destination;
 
 

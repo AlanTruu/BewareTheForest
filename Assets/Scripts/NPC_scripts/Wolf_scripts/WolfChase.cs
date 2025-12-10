@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class WolfChase : IState
 {
+    //References
     private Wolf _wolf;
     private NavMeshAgent _agent;
     private Animator _animator;

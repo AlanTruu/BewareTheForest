@@ -6,13 +6,20 @@ using System.Collections;
 public class Wolf : MonoBehaviour, ILife
 {
     public float health = 10f;
+
+    //References
     public NavMeshAgent agent;
     public Animator animator;
     public Transform target = null;
+    public AudioSource audio_source;
+    public AudioClip howl;
+    public AudioClip death_sound;
+
+    //LayerMasks needed to detect ground and detectables (ILife constructs)
     [SerializeField] public LayerMask terrain_Layer;
     [SerializeField] public LayerMask prey_layer;
 
-    public float patrol_range = 5f;
+
 
     //States
     private IState current_state;
@@ -20,12 +27,15 @@ public class Wolf : MonoBehaviour, ILife
     public WolfChase wolf_chase;
     public WolfAttack wolf_attack;
 
+    //logic
+    public float patrol_range = 5f;
     public bool can_attack = true;
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        audio_source = GetComponent<AudioSource>();
         wolf_patrol = new WolfPatrol(this, agent, animator);
         wolf_chase = new WolfChase(this, agent, animator);
         wolf_attack = new WolfAttack(this, agent, animator);
@@ -78,12 +88,15 @@ public class Wolf : MonoBehaviour, ILife
 
     public bool is_alive()
     {
-        animator.SetTrigger("isDie");
+
         return health > 0;
     }
 
     public void die()
     {
+        animator.SetTrigger("IsDIe");
+        audio_source.Stop();
+        audio_source.PlayOneShot(death_sound);
         StartCoroutine(Death());
     }
 
