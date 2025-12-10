@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 3880190834492758915}
   - component: {fileID: 177591555700675622}
   - component: {fileID: 2707254766516642028}
+  - component: {fileID: -4944682452467312320}
   m_Layer: 0
   m_Name: SpruceTree3Prefab
   m_TagString: Untagged
@@ -179,3 +180,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-4944682452467312320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4508918711970332985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2605244ef4bd94907b5d2e52709e2676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tree
+  health: 100

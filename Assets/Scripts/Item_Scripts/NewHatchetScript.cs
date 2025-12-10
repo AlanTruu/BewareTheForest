@@ -1,17 +1,16 @@
 using UnityEngine;
 
-public class OldFlashlightScript : MonoBehaviour
+public class NewHatchetScript : MonoBehaviour
 {
     private Rigidbody rb;
     private bool isHeld = false;
-    public Light flashLight;
-    
+    private Camera playerCamera;
+    public float damage = 50f;
+    public float range = 3f;
+
     void Start()
     {
-        flashLight = flashLight.GetComponent<Light>();
-
-        if (flashLight != null)
-            flashLight.enabled = false;
+        playerCamera = Camera.main;
     }
     
     void Update()
@@ -44,13 +43,24 @@ public class OldFlashlightScript : MonoBehaviour
 
     void DoAction()
     {
-        Debug.Log("FlashflashLight turned on!");
+        Debug.Log("Hatchet swung!");
         // Replace this with action
-        if (flashLight != null)
+        Swing();
+    }
+
+    void Swing()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, range))
+        {
+            Tree tree = hit.collider.GetComponent<Tree>();
+            if (tree != null)
             {
-                flashLight.enabled = !flashLight.enabled; // toggle
-                Debug.Log("FlashflashLight " + (flashLight.enabled ? "ON" : "OFF"));
+                tree.TakeDamage(damage);
             }
+        }
+
+        // Optional: play swing animation, sound, etc.
     }
 
     // Check recursively if this object is a child of a parent with the specified name

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4262640528282466546}
   - component: {fileID: 1051862081461463341}
   - component: {fileID: 8219701721720470450}
+  - component: {fileID: -2903909868680665502}
   m_Layer: 0
   m_Name: OldHatchetPrefab_hand
   m_TagString: Untagged
@@ -104,3 +105,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   item: {fileID: 11400000, guid: 2e80326c0ea423e4cae2693e1f1bdef5, type: 2}
   amount: 1
+--- !u!114 &-2903909868680665502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3830335212847123204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03b1e3c43fd41472795df4e1b0de40f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OldHatchetScript
+  damage: 25
+  range: 3
