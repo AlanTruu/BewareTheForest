@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class Wolf : MonoBehaviour, ILife
 {
@@ -75,8 +76,20 @@ public class Wolf : MonoBehaviour, ILife
         }
     }
 
+    public bool is_alive()
+    {
+        animator.SetTrigger("isDie");
+        return health > 0;
+    }
+
     public void die()
     {
+        StartCoroutine(Death());
+    }
+
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(1.34f);
         Destroy(this.gameObject);
     }
 
