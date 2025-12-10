@@ -4,13 +4,18 @@ using UnityEngine.AI;
 
 public class RabbitWander : IState
 {
-    Rabbit _rabbit;
+
+    //References
+    private Rabbit _rabbit;
+    private NavMeshAgent _agent;
+    private Animator _animator;
+
+    //Logic
     private Vector3 wander_point;
     private Vector3 last_point;
     private bool has_point = false;
     public bool attacked = false;
-    private NavMeshAgent _agent;
-    private Animator _animator;
+
 
 
     //Rabbit should wander with every x seconds

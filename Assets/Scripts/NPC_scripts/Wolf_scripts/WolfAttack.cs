@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class WolfAttack : IState
 {
+    //References
     private Wolf _wolf;
     private NavMeshAgent _agent;
     private Animator _animator;

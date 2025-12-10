@@ -5,13 +5,15 @@ using System.Collections;
 public class Rabbit : MonoBehaviour, ILife
 {
     public float health = 9f;
+
+    //References
     public NavMeshAgent agent;
     public Animator animator;
-    public float wander_range = 3f;
     public Transform attacker = null;
-    [SerializeField] public LayerMask terrain_Layer;
+    [SerializeField] public LayerMask terrain_Layer; //For detecting round
 
-
+    //Logic
+    public float wander_range = 3f;
 
     //States
     public IState current_state;
