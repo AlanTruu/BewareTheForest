@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Tree : MonoBehaviour
+public class SpruceTree : MonoBehaviour
 {
     public float health = 100f;
 

@@ -53,7 +53,7 @@ public class NewHatchetScript : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, range))
         {
-            Tree tree = hit.collider.GetComponent<Tree>();
+            SpruceTree tree = hit.collider.GetComponent<SpruceTree>();
             if (tree != null)
             {
                 tree.TakeDamage(damage);
