@@ -37,7 +37,10 @@ public class WolfPatrol : IState
     public void Tick()
     {
         //Wolves patrol if they're patrolling
-        patrol();
+        if (_wolf.is_alive())
+        {
+            patrol();
+        }
 
         //Wolves should howl for immersion
         if (howl_cd_counter <= 0)

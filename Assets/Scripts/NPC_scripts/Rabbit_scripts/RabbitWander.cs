@@ -14,7 +14,9 @@ public class RabbitWander : IState
     private Vector3 wander_point;
     private Vector3 last_point;
     private bool has_point = false;
+    private bool is_monster;
     public bool attacked = false;
+
 
 
 
@@ -30,6 +32,7 @@ public class RabbitWander : IState
         _agent = _rabbit.GetComponent<NavMeshAgent>();
         _animator = _rabbit.GetComponent<Animator>();
         wander_delay = wander_cooldown;
+        is_monster = _rabbit.is_monster;
     }
 
 

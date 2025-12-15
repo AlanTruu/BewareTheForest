@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class Wolf : MonoBehaviour, ILife
 {
@@ -95,6 +96,8 @@ public class Wolf : MonoBehaviour, ILife
     public void die()
     {
         animator.SetTrigger("IsDIe");
+        animator.SetFloat("speed", 0);
+        agent.SetDestination(this.gameObject.transform.position);
         audio_source.Stop();
         audio_source.PlayOneShot(death_sound);
         StartCoroutine(Death());
