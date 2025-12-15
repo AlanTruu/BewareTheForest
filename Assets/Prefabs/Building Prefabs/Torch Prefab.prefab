@@ -136,6 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4291056043580017768}
+  - component: {fileID: -2100368030102277278}
   m_Layer: 0
   m_Name: Torch Prefab
   m_TagString: Untagged
@@ -160,6 +161,20 @@ Transform:
   - {fileID: 2207020876717414695}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2100368030102277278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775443128771308760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46b20f8ad668e8a4eba75f065a0f0371, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Item
+  item: {fileID: 11400000, guid: cb8d9e306d55b8040b827566d0d2213b, type: 2}
+  amount: 1
 --- !u!1001 &4821803198216876592
 PrefabInstance:
   m_ObjectHideFlags: 0

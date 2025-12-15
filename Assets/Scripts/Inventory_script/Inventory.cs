@@ -528,4 +528,41 @@ public class Inventory : MonoBehaviour
         currentHandItem = Instantiate(item.heldItemPrefab, hand);
         //currentHandItem.transform.localPosition = Vector3.zero;
     }
+
+    // Helper for Crafting
+
+    public int GetTotalAmount(ItemSO item)
+    {
+        int total = 0;
+
+        foreach (Slot slot in combinedSlots)
+        {
+            if (slot.HasItem() && slot.GetItem() == item)
+            {
+                total += slot.GetAmount();
+            }
+        }
+
+        return total;
+    }
+
+    // Remove Item of resources after creating an item from crafting
+    public void RemoveItem(ItemSO item, int amount)
+    {
+        int remaining = amount;
+
+        foreach (Slot slot in combinedSlots)
+        {
+            if (slot.HasItem() && slot.GetItem() == item)
+            {
+                int remove = Mathf.Min(remaining, slot.GetAmount());
+                slot.RemoveAmount(remove);
+                remaining -= remove;
+
+                if (remaining <= 0)
+                    return;
+            }
+        }
+    }
+
 }
