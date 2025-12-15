@@ -118,6 +118,7 @@ public class Inventory : MonoBehaviour
         }*/
         HandleInventoryInput();
 
+        // Just in case cancel dragging when inventory is not opened
         if (!IsAnyInventoryOpen() && isDragging)
         {
             CancelDrag();
@@ -153,6 +154,7 @@ public class Inventory : MonoBehaviour
         inventoryContainer.SetActive(isOpen && currentTab == Tab.Inventory);
         craftingContainer.SetActive(isOpen && currentTab == Tab.Crafting);
 
+        // Enable/Disable cursor appearance and movement
         if (isOpen)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -164,8 +166,11 @@ public class Inventory : MonoBehaviour
         Cursor.visible = isOpen;
         FirstPersonController.Instance.updateRotation = !isOpen;
 
+        // Cancel drag just in case 
         if (!isOpen)
+        {
             CancelDrag();
+        }   
     }
 
     private bool IsAnyInventoryOpen()
@@ -184,16 +189,23 @@ public class Inventory : MonoBehaviour
     // Call from UI buttons
     public void SwitchTab(string tabName)
     {
-        if (tabName == "Inventory") currentTab = Tab.Inventory;
-        else if (tabName == "Crafting") currentTab = Tab.Crafting;
+        // Button GameObject can adjust string input, and update tabName depending on its statement
+        if (tabName == "Inventory")
+        {
+            currentTab = Tab.Inventory;
+        }
+        else if (tabName == "Crafting")
+        {
+            currentTab = Tab.Crafting;
+        }
 
         // Make sure the inventory UI opens when switching tabs
-        bool isOpen = true; // force open when switching tabs
+        bool isOpen = true; // Force open when switching tabs
 
         inventoryContainer.SetActive(currentTab == Tab.Inventory && isOpen);
         craftingContainer.SetActive(currentTab == Tab.Crafting && isOpen);
 
-        // Update cursor and player rotation
+        // Update cursor appearance and player rotation
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         FirstPersonController.Instance.updateRotation = false;

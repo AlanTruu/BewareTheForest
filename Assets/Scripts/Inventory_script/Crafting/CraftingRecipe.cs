@@ -6,10 +6,11 @@ public class CraftingRecipe : ScriptableObject
     public ItemSO outputItem;
     public int outputAmount = 1;
 
+    // System Serializable = can be seen/edited in the Inspector, DO NOT MODIFY
     [System.Serializable]
-    public struct Ingredient
+    public class Ingredient
     {
-        public ItemSO item;
+        public ItemSO item; 
         public int amount;
     }
      

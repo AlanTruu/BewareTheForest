@@ -2,31 +2,29 @@ using UnityEngine;
 
 public class CraftingManager : MonoBehaviour
 {
-    public Inventory inventory;
+    public Inventory inventory; // Instance of Inventory class to use its functionality
 
     public bool Craft(CraftingRecipe recipe)
     {
-        // Check ingredients
-        foreach (var ing in recipe.ingredients)
+        // Check ingredients and see if inventory has enough
+        foreach (var ingredients in recipe.ingredients)
         {
             // Cannot be created if not enough item in the inventory
-            if (inventory.GetTotalAmount(ing.item) < ing.amount)
+            if (inventory.GetTotalAmount(ingredients.item) < ingredients.amount)
             {
-                Debug.Log("Not enough " + ing.item.itemName);
                 return false;
             }
         }
 
-        // Remove ingredients
-        foreach (var ing in recipe.ingredients)
+        // Check the necessary ingredients and remove the same amount from the inventory
+        foreach (var ingredients in recipe.ingredients)
         {
-            inventory.RemoveItem(ing.item, ing.amount);
+            inventory.RemoveItem(ingredients.item, ingredients.amount);
         }
 
-        // Add crafted item
+        // Add crafted item to the inventory slot
         inventory.AddItem(recipe.outputItem, recipe.outputAmount);
 
-        Debug.Log("Crafted " + recipe.outputItem.itemName);
         return true;
     }
 }
