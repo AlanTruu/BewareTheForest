@@ -1,13 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GraphicManager : MonoBehaviour
 {
     //This class should hold most if not all Canvases.
 
 
-    //player's canvas that holds there healthbar, should probably change name later
-    //since the player's inventory canvas is a separate canvas
+    //Reference to player canvas which holds the health bar and stamina bar
+    //As well as the health/stamina bar references for easy access
     [SerializeField] public Canvas player_canvas;
+    [SerializeField] public Slider health_slider;
+    [SerializeField] public Slider stamina_slider;
     void Start()
     {
 

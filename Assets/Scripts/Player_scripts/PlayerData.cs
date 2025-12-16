@@ -1,10 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
+using EasyPeasyFirstPersonController;
 
 public class PlayerData : MonoBehaviour, ILife
 {
     private float health = 100f;
-    private Slider health_slider;
     public float Health
     {
         get { return health; }
@@ -18,23 +18,25 @@ public class PlayerData : MonoBehaviour, ILife
         set { hunger = value; }
     }
 
-    private float stamina;
-    public float Stamina
-    {
-        get { return stamina; }
-        set { stamina = value; }
-    }
+    public float max_stamina = 5f;
+
+    //References
+    private Slider health_slider;
+    private Slider stamina_slider;
+    private FirstPersonController fps_controller;
 
     void Start()
     {
-        health_slider = SuperManager.gui_manager.player_canvas.GetComponentInChildren<Slider>();
+        health_slider = SuperManager.gui_manager.health_slider;
+        stamina_slider = SuperManager.gui_manager.stamina_slider;
+        fps_controller = GetComponent<FirstPersonController>();
     }
 
     // Update is called once per frame
     void Update()
     {
         health_slider.value = health;
-
+        stamina_slider.value = fps_controller.stamina;
     }
 
     //reduce health and set the value of the health slider
