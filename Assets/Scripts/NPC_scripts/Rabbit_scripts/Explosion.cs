@@ -17,7 +17,7 @@ public class Explosion : MonoBehaviour
 
     void Start()
     {
-        explosion_FX.Play();
+        audio_source.PlayOneShot(explosion_sound);
         Instantiate(explosion_FX, transform.position, Quaternion.identity, transform);
 
         Collider[] hits = Physics.OverlapSphere(this.transform.position, 10f, detectable_layer);
