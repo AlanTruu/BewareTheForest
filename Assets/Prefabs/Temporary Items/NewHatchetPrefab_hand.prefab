@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4783107888005753143}
   - component: {fileID: 4351395377318589833}
   - component: {fileID: -4395245209950703888}
+  - component: {fileID: 951157724060760935}
   m_Layer: 0
   m_Name: NewHatchetPrefab_hand
   m_TagString: Untagged
@@ -119,3 +120,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::NewHatchetScript
   damage: 50
   range: 3
+--- !u!95 &951157724060760935
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3300388264101943941}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88f86b927eca34146882593935b04b1f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
