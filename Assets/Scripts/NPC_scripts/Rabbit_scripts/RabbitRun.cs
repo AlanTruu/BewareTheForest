@@ -17,7 +17,7 @@ public class RabbitRun : IState
     private float threat_distance = 20f;
     private float run_distance = 15f;
     private Vector3 flee_destination;
-    private float explosion_damage = 10f;
+    //private float explosion_damage = 10f;
     private bool is_monster;
     private bool has_exploded = false;
 
