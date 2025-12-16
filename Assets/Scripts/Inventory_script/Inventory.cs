@@ -477,8 +477,8 @@ public class Inventory : MonoBehaviour
 
     private void DropEquippedItem()
     {
-        // Return if Q isn't pressed
-        if (!Input.GetKeyDown(KeyCode.Q))
+        // Return if G isn't pressed
+        if (!Input.GetKeyDown(KeyCode.G))
         {
             return;
         }

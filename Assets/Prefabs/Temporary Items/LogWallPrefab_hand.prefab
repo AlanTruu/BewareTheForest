@@ -99,6 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1214191045489472197}
   - component: {fileID: 9149772035254473733}
+  - component: {fileID: 8427735034694051332}
   m_Layer: 0
   m_Name: LogWallPrefab_hand
   m_TagString: Untagged
@@ -136,3 +137,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Item
   item: {fileID: 11400000, guid: db9720523a2565a46bfea7d1618752c8, type: 2}
   amount: 1
+--- !u!114 &8427735034694051332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3656334480648871636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81b7938a78ff0124dbe4d893d9a9126e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WoodenWallBuild
+  prefabToBuild: {fileID: 8750051804038960190, guid: 72d69848efd077c47a3f6c88892bc616, type: 3}

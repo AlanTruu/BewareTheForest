@@ -443,6 +443,7 @@ GameObject:
   - component: {fileID: 72522936}
   - component: {fileID: 72522938}
   - component: {fileID: 72522939}
+  - component: {fileID: 72522940}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -553,6 +554,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c72672d21322dcf419fc2a4588ff91fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SuperManager
+--- !u!114 &72522940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72522935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82d4a0d514030974fae3993e5ebe1781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingManager
+  placementMask:
+    serializedVersion: 2
+    m_Bits: 1
+  maxBuildDistance: 6
+  validMat: {fileID: 2100000, guid: 854bc5a122be34e4db4c68504deab5ae, type: 2}
+  invalidMat: {fileID: 2100000, guid: f9e1300fd9999db44a5d10a7ec4101bc, type: 2}
 --- !u!1 &74708126
 GameObject:
   m_ObjectHideFlags: 0
