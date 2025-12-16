@@ -17,3 +17,5 @@ MonoBehaviour:
   maxStackSize: 12
   itemPrefab: {fileID: 6614791203159370186, guid: 599b6681b20bc4442ae6cf7676a09a0f, type: 3}
   heldItemPrefab: {fileID: 0}
+  description: Hard Material. Looks like it can be used for crafting
+  recipe: 

@@ -17,3 +17,5 @@ MonoBehaviour:
   maxStackSize: 4
   itemPrefab: {fileID: 775443128771308760, guid: be6821c8096d00242b01162c8686b293, type: 3}
   heldItemPrefab: {fileID: 1955823584290206814, guid: 52f4f983320090347a60809b3229107b, type: 3}
+  description: Blazing fire that lights up surrounding
+  recipe: 3 Logs, 2 Scraps, 1 Rock

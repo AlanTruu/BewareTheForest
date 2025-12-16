@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using EasyPeasyFirstPersonController;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
@@ -38,6 +39,13 @@ public class Inventory : MonoBehaviour
     private List<Slot> inventorySlots = new List<Slot>(); // List of inventory slots
     private List<Slot> hotbarSlots = new List<Slot>(); // List of hotbar slots
     private List<Slot> combinedSlots = new List<Slot>(); // List of inventory + hotbar slots
+
+    // Item description Variables
+    public GameObject itemDescriptionParent;
+    public Image itemDescriptionIcon;
+    public TextMeshProUGUI itemDescriptionNameText;
+    public TextMeshProUGUI itemDescriptionDetailText;
+
 
     // Inventory tab system
     private enum Tab
@@ -135,6 +143,8 @@ public class Inventory : MonoBehaviour
         HotBarSelection();
         DropEquippedItem();
         UpdateHotbarOpacity();
+
+        UpdateItemDescription();
     }
 
     private void HandleInventoryInput()
@@ -577,4 +587,27 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    private void UpdateItemDescription()
+    {
+        Slot slot = GetHoverredSlot();
+
+        if (slot != null)
+        {
+            // Get the item information of the slot
+            ItemSO slotItem = slot.GetItem();
+
+            if (slotItem != null)
+            {
+                // Enable the item description
+                itemDescriptionParent.SetActive(true);
+                itemDescriptionIcon.sprite = slotItem.icon;
+                itemDescriptionNameText.text = slotItem.name;
+                itemDescriptionDetailText.text = slotItem.description;
+                return;
+            }
+        }
+
+        // Disable the item description
+        itemDescriptionParent.SetActive(false);
+    }
 }

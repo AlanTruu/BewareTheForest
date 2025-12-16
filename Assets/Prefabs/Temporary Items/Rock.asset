@@ -17,3 +17,5 @@ MonoBehaviour:
   maxStackSize: 64
   itemPrefab: {fileID: 8899522088737040107, guid: d1a2e569c36b55b4bb030201ff1fbde9, type: 3}
   heldItemPrefab: {fileID: 0}
+  description: A rock. Looks like can be used for crafting
+  recipe: 
