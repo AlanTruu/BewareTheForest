@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class Wolf : MonoBehaviour, ILife
 {
@@ -14,6 +15,7 @@ public class Wolf : MonoBehaviour, ILife
     public AudioSource audio_source;
     public AudioClip howl;
     public AudioClip death_sound;
+    public AudioClip bite_sound;
 
     //LayerMasks needed to detect ground and detectables (ILife constructs)
     [SerializeField] public LayerMask terrain_Layer;
@@ -95,6 +97,8 @@ public class Wolf : MonoBehaviour, ILife
     public void die()
     {
         animator.SetTrigger("IsDIe");
+        animator.SetFloat("speed", 0);
+        agent.SetDestination(this.gameObject.transform.position);
         audio_source.Stop();
         audio_source.PlayOneShot(death_sound);
         StartCoroutine(Death());

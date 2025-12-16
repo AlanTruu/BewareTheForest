@@ -10,10 +10,20 @@ public class Rabbit : MonoBehaviour, ILife
     public NavMeshAgent agent;
     public Animator animator;
     public Transform attacker = null;
+    public AudioSource audio_source;
+    public AudioClip death_sound;
+    
+    //Explosion and meat prefab
+    [SerializeField] public Transform explosion_prefab;
+    [SerializeField] public Transform meat_drop_prefab;
+
+    //Layermasks
     [SerializeField] public LayerMask terrain_Layer; //For detecting round
+    [SerializeField] public LayerMask detectable_layer;
 
     //Logic
     public float wander_range = 3f;
+    public bool is_monster = false;
 
     //States
     public IState current_state;
@@ -26,6 +36,7 @@ public class Rabbit : MonoBehaviour, ILife
         //initialize component references and speed
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        audio_source = GetComponent<AudioSource>();
 
         //Instantiate states
         rabbit_wander = new RabbitWander(this);
@@ -57,13 +68,22 @@ public class Rabbit : MonoBehaviour, ILife
         current_state.OnEnter();
     }
 
+    public void spawn_explosion()
+    {
+        Instantiate(explosion_prefab, transform.position, Quaternion.identity);
+    }
+
     public void take_damage(float damage, Transform source = null)
     {
         health -= damage;
         rabbit_wander.attacked = true;
         attacker = source;
 
-        if (health <= 0)
+        if (damage >= 9999)
+        {
+            Destroy(this.gameObject);
+        }
+        else if (health <= 0)
         {
             die();
         }
@@ -72,17 +92,27 @@ public class Rabbit : MonoBehaviour, ILife
     public void die()
     {
         animator.SetTrigger("isDie");
-        StartCoroutine(Death());
+        audio_source.Stop();
+        audio_source.PlayOneShot(death_sound);
+        Instantiate(meat_drop_prefab, transform.position, Quaternion.identity);
+        StartCoroutine(death());
     }
+
 
     public bool is_alive()
     {
         return health > 0;
     }
 
-    IEnumerator Death()
+    IEnumerator death()
     {
         yield return new WaitForSeconds(1.34f);
+        Destroy(this.gameObject);
+    }
+
+    public IEnumerator delayed_death()
+    {
+        yield return null;
         Destroy(this.gameObject);
     }
 }

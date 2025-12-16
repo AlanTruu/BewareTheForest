@@ -12,6 +12,7 @@ public class Inventory : MonoBehaviour
     public GameObject hotbarObject;
     public GameObject inventorySlotParent;
     public GameObject inventoryContainer;
+    public GameObject craftingContainer;
 
     // Dragging items variables
     public Image dragIcon;
@@ -38,6 +39,14 @@ public class Inventory : MonoBehaviour
     private List<Slot> hotbarSlots = new List<Slot>(); // List of hotbar slots
     private List<Slot> combinedSlots = new List<Slot>(); // List of inventory + hotbar slots
 
+    // Inventory tab system
+    private enum Tab
+    {
+        Inventory,
+        Crafting
+    }
+    private Tab currentTab = Tab.Inventory;
+
     private void Awake()
     {
         // Find all Slots for each gameObjects and put them into respective list
@@ -52,7 +61,9 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         // Make sure inventory starts closed
-        inventoryContainer.SetActive(false);
+        //inventoryContainer.SetActive(false);
+
+        CloseAllUI();
 
         // Enable player camera movement at start
         FirstPersonController.Instance.updateRotation = true;
@@ -66,9 +77,9 @@ public class Inventory : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        /*if (Input.GetKeyDown(KeyCode.Tab))
         {
-            /*inventoryContainer.SetActive(!inventoryContainer.activeInHierarchy); // Open/Close Inventory screen
+            *//*inventoryContainer.SetActive(!inventoryContainer.activeInHierarchy); // Open/Close Inventory screen
             
             // Pop up cursor when inventory is opened, cursor disappears when inventory is closed
             if (Cursor.lockState == CursorLockMode.Locked)
@@ -80,7 +91,7 @@ public class Inventory : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
             }
             Cursor.visible = !Cursor.visible;
-            FirstPersonController.Instance.updateRotation = !FirstPersonController.Instance.updateRotation;*/
+            FirstPersonController.Instance.updateRotation = !FirstPersonController.Instance.updateRotation;*//*
             bool isOpen = !inventoryContainer.activeInHierarchy;
             inventoryContainer.SetActive(isOpen);
 
@@ -104,6 +115,13 @@ public class Inventory : MonoBehaviour
         if (!inventoryContainer.activeInHierarchy && isDragging)
         {
             CancelDrag();
+        }*/
+        HandleInventoryInput();
+
+        // Just in case cancel dragging when inventory is not opened
+        if (!IsAnyInventoryOpen() && isDragging)
+        {
+            CancelDrag();
         }
 
         DetectLookedAtItem();
@@ -117,6 +135,80 @@ public class Inventory : MonoBehaviour
         HotBarSelection();
         DropEquippedItem();
         UpdateHotbarOpacity();
+    }
+
+    private void HandleInventoryInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            ToggleInventory();
+        }
+    }
+
+    // Function: Logic to turn on/off inventory UI
+    private void ToggleInventory()
+    {
+        bool isOpen = !IsAnyInventoryOpen();
+
+        // Open/Close inventory/crafting UI
+        inventoryContainer.SetActive(isOpen && currentTab == Tab.Inventory);
+        craftingContainer.SetActive(isOpen && currentTab == Tab.Crafting);
+
+        // Enable/Disable cursor appearance and movement
+        if (isOpen)
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        Cursor.visible = isOpen;
+        FirstPersonController.Instance.updateRotation = !isOpen;
+
+        // Cancel drag just in case 
+        if (!isOpen)
+        {
+            CancelDrag();
+        }   
+    }
+
+    private bool IsAnyInventoryOpen()
+    {
+        // Check if any Inventory UI is open or not
+        return inventoryContainer.activeInHierarchy || craftingContainer.activeInHierarchy;
+    }
+
+    private void CloseAllUI()
+    {
+        // Close both UI
+        inventoryContainer.SetActive(false);
+        craftingContainer.SetActive(false);
+    }
+
+    // Call from UI buttons
+    public void SwitchTab(string tabName)
+    {
+        // Button GameObject can adjust string input, and update tabName depending on its statement
+        if (tabName == "Inventory")
+        {
+            currentTab = Tab.Inventory;
+        }
+        else if (tabName == "Crafting")
+        {
+            currentTab = Tab.Crafting;
+        }
+
+        // Make sure the inventory UI opens when switching tabs
+        bool isOpen = true; // Force open when switching tabs
+
+        inventoryContainer.SetActive(currentTab == Tab.Inventory && isOpen);
+        craftingContainer.SetActive(currentTab == Tab.Crafting && isOpen);
+
+        // Update cursor appearance and player rotation
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        FirstPersonController.Instance.updateRotation = false;
     }
 
     private void CancelDrag()
@@ -448,4 +540,41 @@ public class Inventory : MonoBehaviour
         currentHandItem = Instantiate(item.heldItemPrefab, hand);
         //currentHandItem.transform.localPosition = Vector3.zero;
     }
+
+    // Helper for Crafting
+
+    public int GetTotalAmount(ItemSO item)
+    {
+        int total = 0;
+
+        foreach (Slot slot in combinedSlots)
+        {
+            if (slot.HasItem() && slot.GetItem() == item)
+            {
+                total += slot.GetAmount();
+            }
+        }
+
+        return total;
+    }
+
+    // Remove Item of resources after creating an item from crafting
+    public void RemoveItem(ItemSO item, int amount)
+    {
+        int remaining = amount;
+
+        foreach (Slot slot in combinedSlots)
+        {
+            if (slot.HasItem() && slot.GetItem() == item)
+            {
+                int remove = Mathf.Min(remaining, slot.GetAmount());
+                slot.RemoveAmount(remove);
+                remaining -= remove;
+
+                if (remaining <= 0)
+                    return;
+            }
+        }
+    }
+
 }
