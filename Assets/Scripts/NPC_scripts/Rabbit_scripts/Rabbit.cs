@@ -12,7 +12,12 @@ public class Rabbit : MonoBehaviour, ILife
     public Transform attacker = null;
     public AudioSource audio_source;
     public AudioClip death_sound;
+    
+    //Explosion and meat prefab
     [SerializeField] public Transform explosion_prefab;
+    [SerializeField] public Transform meat_drop_prefab;
+
+    //Layermasks
     [SerializeField] public LayerMask terrain_Layer; //For detecting round
     [SerializeField] public LayerMask detectable_layer;
 
@@ -89,6 +94,7 @@ public class Rabbit : MonoBehaviour, ILife
         animator.SetTrigger("isDie");
         audio_source.Stop();
         audio_source.PlayOneShot(death_sound);
+        Instantiate(meat_drop_prefab, transform.position, Quaternion.identity);
         StartCoroutine(death());
     }
 

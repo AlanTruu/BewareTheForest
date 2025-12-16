@@ -15,6 +15,7 @@ public class Wolf : MonoBehaviour, ILife
     public AudioSource audio_source;
     public AudioClip howl;
     public AudioClip death_sound;
+    public AudioClip bite_sound;
 
     //LayerMasks needed to detect ground and detectables (ILife constructs)
     [SerializeField] public LayerMask terrain_Layer;

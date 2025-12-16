@@ -51,6 +51,7 @@ MonoBehaviour:
   detectable_layer:
     serializedVersion: 2
     m_Bits: 128
+  explosion_FX: {fileID: 7355364783107405568, guid: 8609013eebb35154e99832d92278026f, type: 3}
 --- !u!82 &1956735834774893997
 AudioSource:
   m_ObjectHideFlags: 0

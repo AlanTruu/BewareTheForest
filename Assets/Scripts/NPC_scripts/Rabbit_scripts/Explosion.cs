@@ -7,6 +7,7 @@ public class Explosion : MonoBehaviour
     public AudioClip explosion_sound;
     public float explosion_damage = 9999f;
     [SerializeField] public LayerMask detectable_layer;
+    [SerializeField] public ParticleSystem explosion_FX;
 
     void Awake()
     {
@@ -16,7 +17,9 @@ public class Explosion : MonoBehaviour
 
     void Start()
     {
-        audio_source.PlayOneShot(explosion_sound);
+        explosion_FX.Play();
+        Instantiate(explosion_FX, transform.position, Quaternion.identity, transform);
+
         Collider[] hits = Physics.OverlapSphere(this.transform.position, 10f, detectable_layer);
 
         foreach (var hit in hits)
@@ -30,13 +33,14 @@ public class Explosion : MonoBehaviour
             }
         }
 
+        Debug.Log("Self destructing...");
         StartCoroutine(self_destruct());
     }
 
 
     IEnumerator self_destruct()
     {
-        yield return new WaitForSeconds(.37f);
+        yield return new WaitForSeconds(2f);
         Destroy(this.gameObject);
     }
 
