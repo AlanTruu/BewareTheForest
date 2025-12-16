@@ -12,7 +12,7 @@ public class Rabbit : MonoBehaviour, ILife
     public Transform attacker = null;
     public AudioSource audio_source;
     public AudioClip death_sound;
-    
+
     //Explosion and meat prefab
     [SerializeField] public Transform explosion_prefab;
     [SerializeField] public Transform meat_drop_prefab;
@@ -79,6 +79,7 @@ public class Rabbit : MonoBehaviour, ILife
         rabbit_wander.attacked = true;
         attacker = source;
 
+        //if rabbit kills itself by explosion, skip death animation
         if (damage >= 9999)
         {
             Destroy(this.gameObject);

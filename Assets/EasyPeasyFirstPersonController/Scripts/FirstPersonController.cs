@@ -255,13 +255,10 @@ namespace EasyPeasyFirstPersonController
             if (isSprinting)
             {
                 stamina -= Time.deltaTime;
-                Debug.Log(stamina);
             }
             else if (!isSprinting && stamina < max_stamina)
             {
                 stamina += Time.deltaTime; //recover stamina
-                Debug.Log(stamina);
-
                 if (stamina > max_stamina) { stamina = max_stamina; } //Clamp stamina to maximum
             }
 
