@@ -523,7 +523,7 @@ public class Inventory : MonoBehaviour
         EquipHandItem();
     }
 
-    private void EquipHandItem()
+    public void EquipHandItem()
     {
         // Destroy previously held item
         if (currentHandItem != null)
