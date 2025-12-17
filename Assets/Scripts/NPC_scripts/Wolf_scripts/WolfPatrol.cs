@@ -64,7 +64,7 @@ public class WolfPatrol : IState
                 //check if any hits were either the player or a prey
                 foreach (var hit in hits)
                 {
-                    if (hit.CompareTag("Player") || hit.CompareTag("Prey"))
+                    if (hit.CompareTag("Player") || hit.CompareTag("Prey") || hit.CompareTag("Child"))
                     {
                         _wolf.target = hit.transform;
                         check_sphere_meter = check_sphere_cd; //reset meter since returning early
@@ -140,6 +140,6 @@ public class WolfPatrol : IState
         }
     }
 
-    
+
 
 }
