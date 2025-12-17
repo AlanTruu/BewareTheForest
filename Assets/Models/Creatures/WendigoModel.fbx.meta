@@ -1,0 +1,411 @@
+fileFormatVersion: 2
+guid: d3f6dec085714e244942d79bb81be810
+ModelImporter:
+  serializedVersion: 24200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 1722a300e46c3ff40be9312e45c7a352, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: f34bda6dc528e6a4b915b5b20130005a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.002
+    second: {fileID: 2100000, guid: 5cabd3ca1bdfc4a40b942c6d1912c58e, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: WendigoAttackL
+      takeName: WendigoAttackL
+      internalID: -4236721171744592909
+      firstFrame: 0
+      lastFrame: 22
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WendigoAttackR
+      takeName: WendigoAttackR
+      internalID: -1535035215925149467
+      firstFrame: 0
+      lastFrame: 22
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WendigoIdle1
+      takeName: WendigoIdle1
+      internalID: 5341327513612252449
+      firstFrame: 0
+      lastFrame: 59
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: WendigoRun
+      takeName: WendigoRun
+      internalID: 3066187545372681455
+      firstFrame: 0
+      lastFrame: 11
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: WendigoModel(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Armature
+      parentName: WendigoModel(Clone)
+      position: {x: -0, y: 4.092801, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Root
+      parentName: Armature
+      position: {x: 0, y: -0.0000000023841857, z: -0.02722265}
+      rotation: {x: 0.000000005105794, y: -0.7071067, z: -0.7071068, w: -0.000000003752272}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Torso
+      parentName: Root
+      position: {x: -0, y: 0.032077294, z: -0.0011782643}
+      rotation: {x: -0.05862978, y: -0.00000011631404, z: -0.0000000024464768, w: 0.9982798}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: UpperTorso
+      parentName: Torso
+      position: {x: 3.7435798e-11, y: 0.008146514, z: 6.635673e-10}
+      rotation: {x: -0.075541444, y: -2.9909583e-10, z: 0.00000000812743, w: 0.9971427}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
+    - name: Arm.L
+      parentName: UpperTorso
+      position: {x: 0.00492405, y: 0.004613877, z: 0.0012697458}
+      rotation: {x: 0.122695066, y: 0.06647855, z: -0.70397496, w: 0.69638056}
+      scale: {x: 1.0000012, y: 1.0000012, z: 0.9999996}
+    - name: Forearm.L
+      parentName: Arm.L
+      position: {x: -4.4703483e-10, y: 0.012903667, z: -4.4703483e-10}
+      rotation: {x: -0.080880895, y: 0.000000059604645, z: 0.00000014062971, w: 0.9967238}
+      scale: {x: 1.0000025, y: 1.0000025, z: 1.0000008}
+    - name: Hand.L
+      parentName: Forearm.L
+      position: {x: -0, y: 0.010195806, z: 3.9115547e-10}
+      rotation: {x: 0.025672369, y: -0.000000013606929, z: 0.0000000024380802, w: 0.99967045}
+      scale: {x: 1.0000011, y: 1.0000011, z: 1.0000005}
+    - name: Arm.R
+      parentName: UpperTorso
+      position: {x: -0.0049240496, y: 0.0046138763, z: 0.0012697491}
+      rotation: {x: 0.12269505, y: -0.0664785, z: 0.7039749, w: 0.69638056}
+      scale: {x: 0.99999934, y: 0.99999887, z: 0.9999989}
+    - name: Forearm.R
+      parentName: Arm.R
+      position: {x: -1.11758706e-10, y: 0.01290367, z: -1.8626451e-11}
+      rotation: {x: -0.080880396, y: -0.00000007078051, z: -0.0000000372529, w: 0.99672383}
+      scale: {x: 1.0000038, y: 1.0000039, z: 1.0000002}
+    - name: Hand.R
+      parentName: Forearm.R
+      position: {x: 6.891787e-10, y: 0.010195804, z: -2.9802322e-10}
+      rotation: {x: 0.025672395, y: 0.0000000059693823, z: -0.000000068800176, w: 0.99967045}
+      scale: {x: 1.0000011, y: 1.0000014, z: 1.0000002}
+    - name: Neck.002
+      parentName: UpperTorso
+      position: {x: 3.7834978e-11, y: 0.0056015123, z: -4.773028e-10}
+      rotation: {x: 0.13387378, y: 7.7256757e-10, z: 2.375193e-10, w: 0.99099845}
+      scale: {x: 0.9999996, y: 0.9999992, z: 0.99999934}
+    - name: Head
+      parentName: Neck.002
+      position: {x: -5.2154064e-10, y: 0.008227933, z: -0.0020842932}
+      rotation: {x: 0.886641, y: -0.000000011977306, z: -0.00000021107456, w: -0.46245846}
+      scale: {x: 1.0000008, y: 1.0000018, z: 1.0000013}
+    - name: Jaw
+      parentName: Head
+      position: {x: -7.9395246e-10, y: 0.0022751954, z: -0.00353757}
+      rotation: {x: -0, y: -0.0000000073549185, z: -0.0000000036774574, w: 1}
+      scale: {x: 0.9999998, y: 1.0000018, z: 1.0000019}
+    - name: LowerTorso
+      parentName: Torso
+      position: {x: 1.2594547e-11, y: -0.0000000019388253, z: 5.947943e-10}
+      rotation: {x: 0.993966, y: 0.0000000073794606, z: -0.00000011518312, w: -0.109688684}
+      scale: {x: 1.0000001, y: 1.0000017, z: 1.0000058}
+    - name: Leg.L.001
+      parentName: LowerTorso
+      position: {x: 0.002979314, y: 0.009178117, z: 0.000014645867}
+      rotation: {x: 0.14439003, y: -0.0045964, z: -0.018196799, w: 0.98934287}
+      scale: {x: 0.9999994, y: 1.0000049, z: 1.000002}
+    - name: Leg.L.002
+      parentName: Leg.L.001
+      position: {x: 2.6077032e-10, y: 0.01152975, z: 0.0000000020675361}
+      rotation: {x: -0.57889855, y: -0.0011531096, z: 0.0050371056, w: 0.81538326}
+      scale: {x: 1.0000012, y: 1.000007, z: 0.99999774}
+    - name: Leg.L
+      parentName: Leg.L.002
+      position: {x: 7.264316e-10, y: 0.012109558, z: -0.0000000029010698}
+      rotation: {x: 0.48427448, y: 0.032710392, z: -0.009524304, w: 0.87425256}
+      scale: {x: 0.9999994, y: 1.000009, z: 0.9999982}
+    - name: Foot.L
+      parentName: Leg.L
+      position: {x: -4.4703483e-10, y: 0.013969576, z: 3.352761e-10}
+      rotation: {x: -0.64462066, y: 0.0074203676, z: -0.030017942, w: -0.763877}
+      scale: {x: 1, y: 1.0000045, z: 0.9999981}
+    - name: Leg.R.001
+      parentName: LowerTorso
+      position: {x: -0.0029793142, y: 0.009178115, z: 0.000014645434}
+      rotation: {x: 0.14439003, y: 0.004596404, z: 0.018196844, w: 0.98934287}
+      scale: {x: 0.99999976, y: 1.0000018, z: 1.0000027}
+    - name: Leg.R.002
+      parentName: Leg.R.001
+      position: {x: 8.475035e-10, y: 0.01152975, z: 1.0710209e-10}
+      rotation: {x: -0.57889855, y: 0.0011531151, z: -0.005037095, w: 0.8153832}
+      scale: {x: 1.000001, y: 1.000009, z: 0.99999815}
+    - name: Leg.R
+      parentName: Leg.R.002
+      position: {x: 4.842877e-10, y: 0.012109557, z: 0.0000000014156103}
+      rotation: {x: 0.4842745, y: -0.032710373, z: 0.00952425, w: 0.87425256}
+      scale: {x: 0.99999946, y: 1.0000066, z: 1.0000004}
+    - name: Foot.R
+      parentName: Leg.R
+      position: {x: -1.11758706e-10, y: 0.013969574, z: 0.0000000019930302}
+      rotation: {x: -0.6446207, y: -0.007420377, z: 0.030017931, w: -0.7638769}
+      scale: {x: 1.0000007, y: 1.0000007, z: 0.99999857}
+    - name: IKLegPole.L
+      parentName: Root
+      position: {x: 0.0033791473, y: 0.021214928, z: -0.025324054}
+      rotation: {x: -0.7069822, y: -0.013271266, z: 0.0132712675, w: 0.7069823}
+      scale: {x: 0.9999997, y: 1, z: 1.0000008}
+    - name: IKLegPole.R
+      parentName: Root
+      position: {x: -0.0033791473, y: 0.021214928, z: -0.025324054}
+      rotation: {x: -0.7069822, y: 0.0132712675, z: -0.013271267, w: 0.7069823}
+      scale: {x: 0.99999934, y: 1, z: 1.0000004}
+    - name: IKLegTarget.L
+      parentName: Root
+      position: {x: 0.004827968, y: 0.00066905975, z: -0.02250234}
+      rotation: {x: 0.70454586, y: 0.06012612, z: 0.060126115, w: 0.70454586}
+      scale: {x: 1, y: 1.0000004, z: 1.0000004}
+    - name: IKLegTarget.R
+      parentName: Root
+      position: {x: -0.0048972373, y: 0.0048683477, z: 0.014113207}
+      rotation: {x: 0.70454586, y: -0.060126137, z: -0.060126133, w: 0.70454586}
+      scale: {x: 0.99999976, y: 1, z: 1}
+    - name: Cube
+      parentName: WendigoModel(Clone)
+      position: {x: -0, y: 4.633911, z: -0.013990045}
+      rotation: {x: -0.09229585, y: -0.092296086, z: -0.7010574, w: 0.7010574}
+      scale: {x: 100, y: 63.862896, z: 100}
+    - name: Cube.001
+      parentName: WendigoModel(Clone)
+      position: {x: -0, y: 5.334081, z: 0.13012385}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Cube.002
+      parentName: WendigoModel(Clone)
+      position: {x: -0, y: 1.6614736, z: 0.051745772}
+      rotation: {x: -0.092296466, y: 0.09229548, z: 0.7010573, w: 0.7010575}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Cube.003
+      parentName: WendigoModel(Clone)
+      position: {x: -0, y: 6.1256204, z: -0.61489654}
+      rotation: {x: 0.5416751, y: 0.5416753, z: 0.45451957, w: -0.45451945}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Cube.004
+      parentName: WendigoModel(Clone)
+      position: {x: -0, y: 5.6684704, z: -0.89667916}
+      rotation: {x: 0.54167503, y: 0.5416754, z: 0.4545195, w: -0.45451948}
+      scale: {x: 39.18953, y: 39.18952, z: 39.18953}
+    - name: Cube.006
+      parentName: WendigoModel(Clone)
+      position: {x: -0, y: 6.1447854, z: -0.73967785}
+      rotation: {x: 0.5416751, y: 0.5416753, z: 0.45451957, w: -0.45451945}
+      scale: {x: 100, y: 100, z: 100}
+    - name: Plane
+      parentName: WendigoModel(Clone)
+      position: {x: -0, y: 7.309156, z: -0.37702262}
+      rotation: {x: -0.08013044, y: 0.9967844, z: 0.00000004359956, w: -0.00000007924638}
+      scale: {x: 100, y: 100, z: 100}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
