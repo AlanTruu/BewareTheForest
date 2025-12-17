@@ -27,6 +27,8 @@ public class PlayerData : MonoBehaviour, ILife
     private Slider stamina_slider;
     private FirstPersonController fps_controller;
     private CharacterController controller;
+    private Canvas death_canvas;
+    private ScreenFade death_fade;
 
     void Start()
     {
@@ -34,6 +36,8 @@ public class PlayerData : MonoBehaviour, ILife
         stamina_slider = SuperManager.gui_manager.stamina_slider;
         fps_controller = GetComponent<FirstPersonController>();
         controller = GetComponent<CharacterController>();
+        death_canvas = SuperManager.gui_manager.death_canvas;
+        death_fade = SuperManager.gui_manager.screen_fade;
     }
 
     // Update is called once per frame
@@ -58,7 +62,8 @@ public class PlayerData : MonoBehaviour, ILife
 
     public void die()
     {
-        SuperManager.gui_manager.screen_fade.fade_to_black();
+        death_canvas.gameObject.SetActive(true);
+        death_fade.fade_to_black();
         StartCoroutine(death_sequence(new Vector3(0, 0, 0))); //Insert position of camp/etc/whatever here
     }
 
@@ -79,6 +84,7 @@ public class PlayerData : MonoBehaviour, ILife
         controller.enabled = false;
         transform.position = respawn_point;
         controller.enabled = true;
-        SuperManager.gui_manager.screen_fade.fade_from_black();
+        death_fade.fade_from_black();
+        death_canvas.gameObject.SetActive(false);
     }
 }

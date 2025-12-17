@@ -11,7 +11,14 @@ public class GraphicManager : MonoBehaviour
     [SerializeField] public Canvas player_canvas;
     [SerializeField] public Slider health_slider;
     [SerializeField] public Slider stamina_slider;
+    [SerializeField] public Canvas death_canvas;
     [SerializeField] public ScreenFade screen_fade;
+
+    void Awake()
+    {
+        death_canvas.gameObject.SetActive(false);
+    }
+
     void Start()
     {
 
