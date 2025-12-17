@@ -72,7 +72,8 @@ public class RifleScript : MonoBehaviour
 
         // Raycast forward
         RaycastHit hit;
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, range))
+        Vector3 start = playerCamera.transform.position + playerCamera.transform.forward * .3f;
+        if (Physics.Raycast(start, playerCamera.transform.forward, out hit, range))
         {
             StartCoroutine(SpawnTracer(hit.point));
             // Hit an object with ILife/Health
@@ -100,14 +101,17 @@ public class RifleScript : MonoBehaviour
         GameObject tracerObj = Instantiate(tracerPrefab, muzzlePoint.position, Quaternion.identity);
         TrailRenderer trail = tracerObj.GetComponent<TrailRenderer>();
 
-        Vector3 start = muzzlePoint.position;
-        float distance = Vector3.Distance(start, target);
-        float remaining = distance;
+        //Vector3 start = muzzlePoint.position;
+        yield return null;
 
-        while (remaining > 0)
+        //float distance = Vector3.Distance(start, target);
+        //float remaining = distance;
+        float remaining = Vector3.Distance(tracerObj.transform.position, target);
+
+        while (remaining > 0f)
         {
             float step = tracerSpeed * Time.deltaTime;
-            tracerObj.transform.position = Vector3.MoveTowards(start, target, distance - remaining + step);
+            tracerObj.transform.position = Vector3.MoveTowards(tracerObj.transform.position, target, step);
             remaining -= step;
             yield return null;
         }

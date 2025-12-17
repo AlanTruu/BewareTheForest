@@ -5195,7 +5195,7 @@ MonoBehaviour:
   damage: 5
   range: 100
   fireRate: 10
-  impactEffect: {fileID: 0}
+  impactEffect: {fileID: 7680051650800392654, guid: 44ae3768cd706491192c29b44c5dbcbd, type: 3}
 --- !u!82 &-959233420905934522
 AudioSource:
   m_ObjectHideFlags: 0

@@ -5,12 +5,17 @@ public class NewHatchetScript : MonoBehaviour
     private Rigidbody rb;
     private bool isHeld = false;
     private Camera playerCamera;
+    private Animator animator;
+    private bool isSwinging;
     public float damage = 50f;
     public float range = 3f;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
 
     void Start()
     {
         playerCamera = Camera.main;
+        animator = GetComponent<Animator>();
     }
     
     void Update()
@@ -30,8 +35,9 @@ public class NewHatchetScript : MonoBehaviour
             }
 
             // Left mouse click triggers action
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !isSwinging)
             {
+                isSwinging = true;
                 DoAction();
             }
         }
@@ -45,7 +51,10 @@ public class NewHatchetScript : MonoBehaviour
     {
         Debug.Log("Hatchet swung!");
         // Replace this with action
-        Swing();
+        animator.SetTrigger("Swing");
+        if (audioSource != null) audioSource.PlayOneShot(audioClip);
+        Invoke(nameof(Swing), .2f);
+        Invoke(nameof(ResetSwing), .5f);
     }
 
     void Swing()
@@ -61,6 +70,11 @@ public class NewHatchetScript : MonoBehaviour
         }
 
         // Optional: play swing animation, sound, etc.
+    }
+
+    void ResetSwing()
+    {
+        isSwinging = false;
     }
 
     // Check recursively if this object is a child of a parent with the specified name

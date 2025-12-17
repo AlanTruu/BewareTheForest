@@ -5,6 +5,15 @@ public class MeatFuncScript : MonoBehaviour
     private Rigidbody rb;
     private bool isHeld = false;
     private float healAmount = 10f;
+    private Animator animator;
+    private bool isEating;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -23,9 +32,13 @@ public class MeatFuncScript : MonoBehaviour
             }
 
             // Left mouse click triggers action
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !isEating)
             {
+                isEating = true;
+                animator.SetTrigger("Eat");
                 DoAction();
+                Invoke(nameof(EatSound), .2f);
+                Invoke(nameof(ResetEat), .76f);
             }
         }
         else
@@ -54,6 +67,15 @@ public class MeatFuncScript : MonoBehaviour
                 }
             }
         }
+    }
+
+    void EatSound()
+    {
+        if (audioSource != null) audioSource.PlayOneShot(audioClip);
+    }
+    void ResetEat()
+    {
+        isEating = false;
     }
 
     // Check recursively if this object is a child of a parent with the specified name

@@ -5,6 +5,8 @@ public class OldFlashlightScript : MonoBehaviour
     private Rigidbody rb;
     private bool isHeld = false;
     public Light flashLight;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
     
     void Start()
     {
@@ -33,6 +35,7 @@ public class OldFlashlightScript : MonoBehaviour
             // Left mouse click triggers action
             if (Input.GetMouseButtonDown(0))
             {
+                if (audioSource != null) audioSource.PlayOneShot(audioClip);
                 DoAction();
             }
         }
