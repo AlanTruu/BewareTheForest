@@ -618,6 +618,7 @@ MonoBehaviour:
   player_canvas: {fileID: 1907682015}
   health_slider: {fileID: 905940475}
   stamina_slider: {fileID: 1584002767}
+  death_canvas: {fileID: 1953776208}
   screen_fade: {fileID: 1953776210}
 --- !u!114 &72522939
 MonoBehaviour:
