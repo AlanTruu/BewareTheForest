@@ -71,7 +71,7 @@ public class WolfAttack : IState
     public void attack()
     {
         _animator.SetTrigger("attack_trigger");
-        target_life.take_damage(3f, _wolf.transform);
+        target_life.take_damage(_wolf.damage, _wolf.transform);
         _wolf.can_attack = false;
         _wolf.call_reset_attack(2f);
     }

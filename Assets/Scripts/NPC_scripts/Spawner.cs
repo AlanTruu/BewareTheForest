@@ -68,11 +68,11 @@ public class Spawner : MonoBehaviour
         Vector3 pos = transform.position;
 
         Vector3 spawn_pos = new Vector3(pos.x + randomX, y_ground, pos.z + randomZ);
-        
+
         //if there is an alternate prefab to spawn
         if (alt_prefab)
         {
-            if (Random.Range(0,1) <= alt_chance)
+            if (Random.Range(0f, 1f) <= alt_chance)
             {
                 entity = Instantiate(alt_prefab, spawn_pos, Quaternion.identity);
             }
