@@ -16,7 +16,7 @@ public class GraphicManager : MonoBehaviour
 
     void Awake()
     {
-        death_canvas.gameObject.SetActive(false);
+        //death_canvas.gameObject.SetActive(false);
     }
 
     void Start()
