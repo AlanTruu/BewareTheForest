@@ -54,6 +54,8 @@ public class PauseMenu : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        SceneManager.LoadScene(menuSceneName);
+        //SceneManager.LoadScene(menuSceneName);
+        FindFirstObjectByType<SceneFader>().FadeToScene(menuSceneName);
+        Time.timeScale = 1f;
     }
 }
