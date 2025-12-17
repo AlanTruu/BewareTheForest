@@ -17,3 +17,5 @@ MonoBehaviour:
   maxStackSize: 10
   itemPrefab: {fileID: 6041769610356784855, guid: 614e06daf6c22484ebb8033795887688, type: 3}
   heldItemPrefab: {fileID: 1799300995393742447, guid: e9788dfdbc2ff7c4e92732019bf78f3d, type: 3}
+  description: Looks yummy enough
+  recipe: 

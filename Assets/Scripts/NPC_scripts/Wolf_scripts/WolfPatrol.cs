@@ -5,16 +5,22 @@ using UnityEngine.AI;
 
 public class WolfPatrol : IState
 {
+    //References
     private Wolf _wolf;
     private NavMeshAgent _agent;
     private Animator _animator;
+    private AudioSource audio_source;
+    private AudioClip howl;
 
+    //Logic
     private Vector3 patrol_point;
     private Vector3 last_point;
     private bool has_point = false;
     public float detection_radius = 10f;
     public float check_sphere_cd = 0.3f;
     public float check_sphere_meter;
+    public float howl_cd = 8f;
+    public float howl_cd_counter;
 
 
     public WolfPatrol(Wolf wolf, NavMeshAgent agent, Animator animator)
@@ -23,17 +29,29 @@ public class WolfPatrol : IState
         _agent = agent;
         _animator = animator;
         check_sphere_meter = check_sphere_cd;
+        audio_source = wolf.audio_source;
+        howl = wolf.howl;
+        howl_cd_counter = 0;
     }
 
     public void Tick()
     {
-        patrol();
+        //Wolves patrol if they're patrolling
+        if (_wolf.is_alive())
+        {
+            patrol();
+        }
 
-        //initiate chase when player is within 10 meters
-        // if (Vector3.Distance(_wolf.transform.position, _wolf.target.transform.position) < 10f)
-        // {
-        //     _wolf.switch_state(_wolf.wolf_chase);
-        // }
+        //Wolves should howl for immersion
+        if (howl_cd_counter <= 0)
+        {
+            audio_source.PlayOneShot(howl);
+            howl_cd_counter = howl_cd;
+        }
+        else
+        {
+            howl_cd_counter -= Time.deltaTime;
+        }
 
         //new logic: call physics.overlapbox every check_sphere_cd seconds for prey
         if (check_sphere_meter <= 0)
@@ -46,7 +64,7 @@ public class WolfPatrol : IState
                 //check if any hits were either the player or a prey
                 foreach (var hit in hits)
                 {
-                    if (hit.CompareTag("Player") || hit.CompareTag("Prey"))
+                    if (hit.CompareTag("Player") || hit.CompareTag("Prey") || hit.CompareTag("Child"))
                     {
                         _wolf.target = hit.transform;
                         check_sphere_meter = check_sphere_cd; //reset meter since returning early
@@ -69,7 +87,7 @@ public class WolfPatrol : IState
     public void OnEnter()
     {
         _animator.SetInteger("state", 1);
-        
+
         //reset any targets and booleans
         has_point = false; //reset to false in case has_point was never reset after being marked true
         _wolf.target = null;
@@ -98,11 +116,14 @@ public class WolfPatrol : IState
 
     public void patrol()
     {
+
+        //Check if there's already a chosen patrol point, find if not
         if (!has_point)
         {
             find_patrol_point();
         }
 
+        //if there is a point, check if its not the same as the last point
         if (has_point)
         {
             if (patrol_point != last_point)
@@ -118,4 +139,7 @@ public class WolfPatrol : IState
             has_point = false; //must be careful with this in case patrol ever gets interrupted
         }
     }
+
+
+
 }

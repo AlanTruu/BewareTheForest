@@ -17,3 +17,5 @@ MonoBehaviour:
   maxStackSize: 64
   itemPrefab: {fileID: 8608450224698501341, guid: 3092de0d8bee4704fb0d66187665994d, type: 3}
   heldItemPrefab: {fileID: 0}
+  description: Durable Log. Can be used for crafting
+  recipe: 

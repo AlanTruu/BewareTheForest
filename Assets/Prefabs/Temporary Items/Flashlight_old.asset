@@ -17,3 +17,5 @@ MonoBehaviour:
   maxStackSize: 1
   itemPrefab: {fileID: 8310957318743709717, guid: d66b75c0dffcd4c4d8d44c56c2b35f66, type: 3}
   heldItemPrefab: {fileID: 9088388108606024914, guid: afa2a30a47676944a8d0cc32d88f3c89, type: 3}
+  description: Old flashlight and not very bright
+  recipe: 

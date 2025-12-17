@@ -74,7 +74,8 @@ namespace EasyPeasyFirstPersonController
         private float tiltVelocity;
 
         public float CurrentCameraHeight => isCrouching || isSliding ? crouchCameraHeight : originalCameraParentHeight;
-        public float stamina = 20;
+        public float stamina = 5;
+        public float max_stamina = 5f;
 
         private void Awake()
         {
@@ -246,9 +247,21 @@ namespace EasyPeasyFirstPersonController
         {
             moveInput.x = Input.GetAxis("Horizontal");
             moveInput.y = Input.GetAxis("Vertical");
-            isSprinting = canSprint && Input.GetKey(KeyCode.LeftShift) && moveInput.y > 0.1f && isGrounded && !isCrouching && !isSliding;
+            isSprinting = canSprint && Input.GetKey(KeyCode.LeftShift) && moveInput.y > 0.1f && isGrounded && !isCrouching && !isSliding && stamina > 0;
 
             float currentSpeed = isCrouching ? crouchSpeed : (isSprinting ? sprintSpeed : walkSpeed);
+
+            //If sprinting, reduce stamina, if not: recover stamina
+            if (isSprinting)
+            {
+                stamina -= Time.deltaTime;
+            }
+            else if (!isSprinting && stamina < max_stamina)
+            {
+                stamina += Time.deltaTime; //recover stamina
+                if (stamina > max_stamina) { stamina = max_stamina; } //Clamp stamina to maximum
+            }
+
             if (!isMove) currentSpeed = 0f;
 
             Vector3 direction = new Vector3(moveInput.x, 0f, moveInput.y);
