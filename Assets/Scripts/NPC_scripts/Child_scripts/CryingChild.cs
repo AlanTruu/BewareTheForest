@@ -17,6 +17,9 @@ public class CryingChild : MonoBehaviour, ILife
     public ChildIdle child_idle;
     public ChildFollow child_follow;
 
+    //Logic
+    public bool is_dead = false;
+
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -46,8 +49,9 @@ public class CryingChild : MonoBehaviour, ILife
     {
         health -= damage;
 
-        if (health <= 0)
+        if (health <= 0 && !is_dead)
         {
+            is_dead = true;
             die();
         }
     }
