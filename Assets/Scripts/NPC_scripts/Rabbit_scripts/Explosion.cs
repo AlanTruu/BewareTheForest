@@ -5,7 +5,7 @@ public class Explosion : MonoBehaviour
 {
     public AudioSource audio_source;
     public AudioClip explosion_sound;
-    public float explosion_damage = 9999f;
+    public float explosion_damage = 50f;
     [SerializeField] public LayerMask detectable_layer;
     [SerializeField] public ParticleSystem explosion_FX;
 

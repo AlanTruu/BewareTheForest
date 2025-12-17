@@ -58,7 +58,12 @@ public class Wolf : MonoBehaviour, ILife
     // Update is called once per frame
     void Update()
     {
-        current_state.Tick();
+        if (current_state != null)
+        {
+            current_state.Tick();
+        }
+
+
     }
 
     public void switch_state(IState state)
@@ -96,9 +101,17 @@ public class Wolf : MonoBehaviour, ILife
 
     public void die()
     {
+        agent.ResetPath();
+        agent.isStopped = true;
+        agent.velocity = Vector3.zero;
+        agent.updatePosition = false;
+        agent.updateRotation = false;
+
+        current_state = null;
+
         animator.SetTrigger("IsDIe");
         animator.SetFloat("speed", 0);
-        agent.SetDestination(this.gameObject.transform.position);
+
         audio_source.Stop();
         audio_source.PlayOneShot(death_sound);
         StartCoroutine(Death());

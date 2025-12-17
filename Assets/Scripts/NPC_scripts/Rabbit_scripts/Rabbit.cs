@@ -52,7 +52,7 @@ public class Rabbit : MonoBehaviour, ILife
     // Update is called once per frame
     void Update()
     {
-        current_state.Tick();
+        if (current_state != null) current_state.Tick();
     }
 
     public void switch_state(IState state)
@@ -80,7 +80,7 @@ public class Rabbit : MonoBehaviour, ILife
         attacker = source;
 
         //if rabbit kills itself by explosion, skip death animation
-        if (damage >= 9999)
+        if (damage >= 50)
         {
             Destroy(this.gameObject);
         }
@@ -92,6 +92,12 @@ public class Rabbit : MonoBehaviour, ILife
 
     public void die()
     {
+        agent.ResetPath();
+        agent.isStopped = true;
+        agent.velocity = Vector3.zero;
+        agent.updatePosition = false;
+        agent.updateRotation = false;
+
         animator.SetTrigger("isDie");
         audio_source.Stop();
         audio_source.PlayOneShot(death_sound);
