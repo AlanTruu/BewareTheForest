@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 using EasyPeasyFirstPersonController;
+using System.Collections;
 
 public class PlayerData : MonoBehaviour, ILife
 {
+    private float max_health = 100f;
     private float health = 100f;
     public float Health
     {
@@ -24,12 +26,14 @@ public class PlayerData : MonoBehaviour, ILife
     private Slider health_slider;
     private Slider stamina_slider;
     private FirstPersonController fps_controller;
+    private CharacterController controller;
 
     void Start()
     {
         health_slider = SuperManager.gui_manager.health_slider;
         stamina_slider = SuperManager.gui_manager.stamina_slider;
         fps_controller = GetComponent<FirstPersonController>();
+        controller = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
@@ -55,5 +59,26 @@ public class PlayerData : MonoBehaviour, ILife
     public void die()
     {
         SuperManager.gui_manager.screen_fade.fade_to_black();
+        StartCoroutine(death_sequence(new Vector3(0, 0, 0))); //Insert position of camp/etc/whatever here
+    }
+
+    //Coroutine to delay player's respawn
+    IEnumerator death_sequence(Vector3 spawn_location)
+    {
+        yield return new WaitForSeconds(1.5f);
+        respawn(spawn_location);
+    }
+
+    //Should reset any of the player's stats, teleports player to respawn point
+    public void respawn(Vector3 respawn_point)
+    {
+        //DO respawn stuff here
+        health = max_health;
+
+
+        controller.enabled = false;
+        transform.position = respawn_point;
+        controller.enabled = true;
+        SuperManager.gui_manager.screen_fade.fade_from_black();
     }
 }
