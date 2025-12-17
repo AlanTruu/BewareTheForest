@@ -33,6 +33,7 @@ public class Wolf : MonoBehaviour, ILife
     public float patrol_range = 5f;
     public bool can_attack = true;
     private bool is_dead = false;
+    public float damage = 3f;
 
     void Awake()
     {
