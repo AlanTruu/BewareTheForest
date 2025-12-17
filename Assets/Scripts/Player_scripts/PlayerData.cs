@@ -45,10 +45,15 @@ public class PlayerData : MonoBehaviour, ILife
 
         health -= dmg;
         health_slider.value = health;
+
+        if (health <= 0)
+        {
+            die();
+        }
     }
 
     public void die()
     {
-
+        SuperManager.gui_manager.screen_fade.fade_to_black();
     }
 }
