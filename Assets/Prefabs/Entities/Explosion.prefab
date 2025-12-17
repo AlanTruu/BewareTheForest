@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Explosion
   audio_source: {fileID: 0}
   explosion_sound: {fileID: 8300000, guid: 3c84126cfee257a4ab78ffd68b95b6d6, type: 3}
-  explosion_damage: 9999
+  explosion_damage: 50
   detectable_layer:
     serializedVersion: 2
     m_Bits: 128
