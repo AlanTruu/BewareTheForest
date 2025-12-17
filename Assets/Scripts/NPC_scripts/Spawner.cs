@@ -8,9 +8,12 @@ using UnityEngine.UIElements;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] Transform entity_prefab;
+    [SerializeField] Transform alt_prefab;
     [SerializeField] LayerMask detectable_layer;
     [SerializeField] string entity_tag;
-    public float y_ground;
+    public float y_ground; //used to detect where the ground is
+    public float alt_chance = 0.2f; //probability of spawning an alt instead of the default
+    private Transform entity;
 
     //Controls how many entities are allowed to be near the spawner
     public int entity_limit = 5;
@@ -65,8 +68,24 @@ public class Spawner : MonoBehaviour
         Vector3 pos = transform.position;
 
         Vector3 spawn_pos = new Vector3(pos.x + randomX, y_ground, pos.z + randomZ);
+        
+        //if there is an alternate prefab to spawn
+        if (alt_prefab)
+        {
+            if (Random.Range(0,1) <= alt_chance)
+            {
+                entity = Instantiate(alt_prefab, spawn_pos, Quaternion.identity);
+            }
+            else
+            {
+                entity = Instantiate(entity_prefab, spawn_pos, Quaternion.identity);
+            }
+        }
+        else
+        {
+            entity = Instantiate(entity_prefab, spawn_pos, Quaternion.identity);
+        }
 
-        Transform entity = Instantiate(entity_prefab, spawn_pos, Quaternion.identity);
 
         NavMeshAgent agent = entity.GetComponent<NavMeshAgent>();
 
