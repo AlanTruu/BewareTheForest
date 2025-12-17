@@ -1,6 +1,7 @@
 //using System.Numerics;
 //using System;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UIElements;
 
 
@@ -9,6 +10,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] Transform entity_prefab;
     [SerializeField] LayerMask detectable_layer;
     [SerializeField] string entity_tag;
+    public float y_ground;
 
     //Controls how many entities are allowed to be near the spawner
     public int entity_limit = 5;
@@ -24,9 +26,11 @@ public class Spawner : MonoBehaviour
     //Controls how often the spawner should do a head count
     public float count_cd = 20f;
     private float count_timer = 0;
+
     void Start()
     {
-
+        Vector3 ground_pos = GetGroundedPosition(transform.position);
+        y_ground = ground_pos.y;
     }
 
     // Update is called once per frame
@@ -59,9 +63,17 @@ public class Spawner : MonoBehaviour
         float randomZ = Random.Range(-spawn_range, spawn_range);
 
         Vector3 pos = transform.position;
-        Vector3 spawn_pos = new Vector3(pos.x + randomX, pos.y, pos.z + randomZ);
 
-        Instantiate(entity_prefab, spawn_pos, Quaternion.identity);
+        Vector3 spawn_pos = new Vector3(pos.x + randomX, y_ground, pos.z + randomZ);
+
+        Transform entity = Instantiate(entity_prefab, spawn_pos, Quaternion.identity);
+
+        NavMeshAgent agent = entity.GetComponent<NavMeshAgent>();
+
+        if (agent)
+        {
+            agent.Warp(spawn_pos);
+        }
     }
 
     void spawn_multiple(int count)
@@ -97,6 +109,18 @@ public class Spawner : MonoBehaviour
         {
             below_limit = false;
         }
+    }
+
+    public Vector3 GetGroundedPosition(Vector3 spawnXZ, float rayHeight = 50f)
+    {
+        Vector3 rayOrigin = spawnXZ + Vector3.up * rayHeight;
+
+        if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, rayHeight * 2f))
+        {
+            return hit.point;
+        }
+
+        return spawnXZ; // fallback
     }
 
 }
