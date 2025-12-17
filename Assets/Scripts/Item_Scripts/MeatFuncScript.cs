@@ -10,9 +10,14 @@ public class MeatFuncScript : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip audioClip;
 
+    // Meat reference for Item info
+    public ItemSO meat;
+    private Inventory inventory; 
+
     void Start()
     {
         animator = GetComponent<Animator>();
+        inventory = FindObjectOfType<Inventory>(); // Need this because script is not attached to scene object
     }
 
     void Update()
@@ -34,11 +39,19 @@ public class MeatFuncScript : MonoBehaviour
             // Left mouse click triggers action
             if (Input.GetMouseButtonDown(0) && !isEating)
             {
-                isEating = true;
-                animator.SetTrigger("Eat");
-                DoAction();
-                Invoke(nameof(EatSound), .2f);
-                Invoke(nameof(ResetEat), .76f);
+                // Check if meat is left in the inventory
+                if (inventory != null && meat != null && inventory.GetTotalAmount(meat) > 0)
+                {
+                    isEating = true;
+                    animator.SetTrigger("Eat");
+                    DoAction();
+                    Invoke(nameof(EatSound), .2f);
+                    Invoke(nameof(ResetEat), .76f);
+                }
+                else
+                {
+                    DestroyPrefab(); // Remove the meat_hand prefab from the player
+                }
             }
         }
         else
@@ -66,6 +79,29 @@ public class MeatFuncScript : MonoBehaviour
                     playerData.Health = 100;
                 }
             }
+        }
+
+        // Remove meat from inventory after eating
+        if (inventory != null && meat != null)
+        {
+            inventory.RemoveItem(meat, 1);
+
+            // Destroy meat immediately after eating the last piece
+            if (inventory.GetTotalAmount(meat) <= 0)
+            {
+                Invoke(nameof(DestroyPrefab), 0.76f);
+            }
+        }
+    }
+
+    // Function: Destroy the meat prefab equipped on hand, and empty it
+    void DestroyPrefab()
+    {
+        Destroy(gameObject);
+
+        if (inventory != null)
+        {
+            inventory.EquipHandItem(); // Empty the hand equip item
         }
     }
 
