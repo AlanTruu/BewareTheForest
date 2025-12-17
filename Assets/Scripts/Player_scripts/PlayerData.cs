@@ -29,17 +29,23 @@ public class PlayerData : MonoBehaviour, ILife
     private CharacterController controller;
     private Canvas death_canvas;
     private ScreenFade death_fade;
+    private AudioSource audio_source;
+    [SerializeField] AudioClip hurt_1;
 
+
+    //Logic
     private bool is_dead = false;
 
     void Start()
     {
         health_slider = SuperManager.gui_manager.health_slider;
         stamina_slider = SuperManager.gui_manager.stamina_slider;
-        fps_controller = GetComponent<FirstPersonController>();
-        controller = GetComponent<CharacterController>();
         death_canvas = SuperManager.gui_manager.death_canvas;
         death_fade = SuperManager.gui_manager.screen_fade;
+
+        fps_controller = GetComponent<FirstPersonController>();
+        controller = GetComponent<CharacterController>();
+        audio_source = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -55,6 +61,7 @@ public class PlayerData : MonoBehaviour, ILife
 
         health -= dmg;
         health_slider.value = health;
+        audio_source.PlayOneShot(hurt_1);
 
         if (health <= 0 && !is_dead)
         {
