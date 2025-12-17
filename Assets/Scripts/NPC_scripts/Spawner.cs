@@ -1,5 +1,6 @@
 //using System.Numerics;
 //using System;
+//using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
@@ -69,27 +70,18 @@ public class Spawner : MonoBehaviour
 
         Vector3 spawn_pos = new Vector3(pos.x + randomX, y_ground, pos.z + randomZ);
 
-        //if there is an alternate prefab to spawn
-        if (alt_prefab)
+        Transform prefab_to_spawn = entity_prefab;
+
+        if (alt_prefab != null && Random.Range(0f, 1f) <= alt_chance)
         {
-            if (Random.Range(0f, 1f) <= alt_chance)
-            {
-                entity = Instantiate(alt_prefab, spawn_pos, Quaternion.identity);
-            }
-            else
-            {
-                entity = Instantiate(entity_prefab, spawn_pos, Quaternion.identity);
-            }
-        }
-        else
-        {
-            entity = Instantiate(entity_prefab, spawn_pos, Quaternion.identity);
+            prefab_to_spawn = alt_prefab;
         }
 
+        entity = Instantiate(prefab_to_spawn, spawn_pos, Quaternion.identity);
 
         NavMeshAgent agent = entity.GetComponent<NavMeshAgent>();
 
-        if (agent)
+        if (agent != null)
         {
             agent.Warp(spawn_pos);
         }
