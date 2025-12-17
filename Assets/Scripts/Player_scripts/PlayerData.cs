@@ -30,6 +30,8 @@ public class PlayerData : MonoBehaviour, ILife
     private Canvas death_canvas;
     private ScreenFade death_fade;
 
+    private bool is_dead = false;
+
     void Start()
     {
         health_slider = SuperManager.gui_manager.health_slider;
@@ -54,15 +56,16 @@ public class PlayerData : MonoBehaviour, ILife
         health -= dmg;
         health_slider.value = health;
 
-        if (health <= 0)
+        if (health <= 0 && !is_dead)
         {
+            is_dead = true;
             die();
         }
     }
 
     public void die()
     {
-        death_canvas.gameObject.SetActive(true);
+        //death_canvas.gameObject.SetActive(true);
         death_fade.fade_to_black();
         StartCoroutine(death_sequence(new Vector3(0, 0, 0))); //Insert position of camp/etc/whatever here
     }
@@ -85,6 +88,6 @@ public class PlayerData : MonoBehaviour, ILife
         transform.position = respawn_point;
         controller.enabled = true;
         death_fade.fade_from_black();
-        death_canvas.gameObject.SetActive(false);
+        //death_canvas.gameObject.SetActive(false);
     }
 }

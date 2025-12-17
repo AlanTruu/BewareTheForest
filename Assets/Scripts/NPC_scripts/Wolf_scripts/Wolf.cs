@@ -32,6 +32,7 @@ public class Wolf : MonoBehaviour, ILife
     //logic
     public float patrol_range = 5f;
     public bool can_attack = true;
+    private bool is_dead = false;
 
     void Awake()
     {
@@ -87,8 +88,9 @@ public class Wolf : MonoBehaviour, ILife
     {
         health -= damage;
 
-        if (health <= 0)
+        if (health <= 0 && !is_dead)
         {
+            is_dead = true;
             die();
         }
     }

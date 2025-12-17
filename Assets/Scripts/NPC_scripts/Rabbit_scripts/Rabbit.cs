@@ -24,6 +24,7 @@ public class Rabbit : MonoBehaviour, ILife
     //Logic
     public float wander_range = 3f;
     public bool is_monster = false;
+    private bool is_dead = false;
 
     //States
     public IState current_state;
@@ -84,8 +85,9 @@ public class Rabbit : MonoBehaviour, ILife
         {
             Destroy(this.gameObject);
         }
-        else if (health <= 0)
+        else if (health <= 0 && !is_dead)
         {
+            is_dead = true;
             die();
         }
     }
