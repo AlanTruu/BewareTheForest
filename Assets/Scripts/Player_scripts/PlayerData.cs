@@ -74,7 +74,7 @@ public class PlayerData : MonoBehaviour, ILife
     {
         //death_canvas.gameObject.SetActive(true);
         death_fade.fade_to_black();
-        StartCoroutine(death_sequence(new Vector3(0, 0, 0))); //Insert position of camp/etc/whatever here
+        StartCoroutine(death_sequence(new Vector3(34, 74, 893))); //Insert position of camp/etc/whatever here
     }
 
     //Coroutine to delay player's respawn
