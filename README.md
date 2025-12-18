@@ -14,14 +14,15 @@ Scene:
 + prefab assets design
 + Base Camp
 + Day/Night Cycle
-+ Menu (Game Start, Pause?, Game End)
++ Menu (Game Start, Pause)
 
 Player:
 + Player Movement
-+ Player HP/Hunger meter + UI
++ Player HP/sprint meter + UI
 
 Item Functionalities:
 + Hatchet - Left click to swing and chop trees
++ Flashlight - Left click to activate
 + Base Camp/ Torch - Lights up the area
 + Meat - Heals player's Hunger Bar + HP
 
@@ -34,6 +35,7 @@ Inventory:
 + Simple crafting
 + Hotbar
 + Equip item on a hand
++ Drop Item
 
 Prefabs:
 + Choppable Tree 
@@ -46,16 +48,17 @@ Prefabs:
 
 ## Mechanics:
 + E - pick up items/prefabs
-+ Q - Drop items from inventory hotbar
++ G - Drop items from inventory hotbar
 + Tab - open inventory
 + WASD - Player movement
 + Shift - sprint
 + Ctrl - Crouch
++ Escape - Pause Menu
 + 1, 2, 3, 4, 5, 6 - Respective hotbar slot positions
 + Left click or right click to activate item functionality when equipped?
 
 ## General Goals for each person (may change):
-1. Brian - Inventory system + crafting
+1. Brian - Inventory system + crafting, pause menu
 2. Alan - Enemy AI + Player Movement
 3. Andy - Part of Level Design (prefabs) + Base camp
 4. Nathan - Item functionality + Menus
