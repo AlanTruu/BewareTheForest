@@ -54,7 +54,7 @@ MonoBehaviour:
     m_Bits: 128
   audio_source: {fileID: 0}
   screech: {fileID: 8300000, guid: 4e6d9e868d177114cb253c0e1a65454a, type: 3}
-  punch: {fileID: 8300000, guid: 8f3a82540891a5240acc250ce001a32f, type: 3}
+  punch: {fileID: 8300000, guid: 0c459456e94c3134f876b259a0c6f956, type: 3}
   attack_cd: 2
   attack_counter: 0
   attack_radius: 1
