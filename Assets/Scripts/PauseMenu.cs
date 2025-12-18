@@ -57,5 +57,6 @@ public class PauseMenu : MonoBehaviour
         //SceneManager.LoadScene(menuSceneName);
         FindFirstObjectByType<SceneFader>().FadeToScene(menuSceneName);
         Time.timeScale = 1f;
+        AudioListener.pause = false;
     }
 }
