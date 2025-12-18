@@ -53,30 +53,36 @@ public class WendigoAttack : IState
 
     }
 
+    // public void attack()
+    // {
+    //     _animator.SetTrigger("attack");
+    //     _wendigo.StartCoroutine(_wendigo.Punch_SFX());
+    //     Vector3 origin = _wendigo.transform.position;
+    //     Vector3 direction = _wendigo.transform.forward;
+
+    //     Debug.Log("attacking...");
+
+
+    //     RaycastHit[] hits = Physics.SphereCastAll(origin, attack_radius, direction, attack_range, _wendigo.detectable_layer);
+
+    //     foreach (RaycastHit hit in hits)
+    //     {
+    //         Debug.DrawLine(origin, hit.point, Color.yellow);
+    //         Debug.DrawRay(hit.point, hit.normal, Color.cyan);
+
+    //         ILife life = hit.collider.GetComponent<ILife>();
+
+    //         if (life != null)
+    //         {
+    //             life.take_damage(100f, _wendigo.transform);
+    //         }
+    //     }
+
+    // }
+
     public void attack()
     {
-        _animator.SetTrigger("attack");
-        Vector3 origin = _wendigo.transform.position;
-        Vector3 direction = _wendigo.transform.forward;
-
-        Debug.Log("attacking...");
-
-
-        RaycastHit[] hits = Physics.SphereCastAll(origin, attack_radius, direction, attack_range, _wendigo.detectable_layer);
-
-        foreach (RaycastHit hit in hits)
-        {
-            Debug.DrawLine(origin, hit.point, Color.yellow);
-            Debug.DrawRay(hit.point, hit.normal, Color.cyan);
-
-            ILife life = hit.collider.GetComponent<ILife>();
-
-            if (life != null)
-            {
-                life.take_damage(100f, _wendigo.transform);
-            }
-        }
-
+        _wendigo.StartCoroutine(_wendigo.attack());
     }
 
 }
