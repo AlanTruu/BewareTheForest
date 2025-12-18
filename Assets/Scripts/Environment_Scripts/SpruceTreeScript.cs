@@ -20,9 +20,10 @@ public class SpruceTree : MonoBehaviour
 
     private void ChopDown()
     {
+        Vector3 spawnPos = transform.position + Vector3.up * 1.5f; // adjust height as needed
         Destroy(gameObject);
 
         // play effects, animation, drop logs, etc.
-        Instantiate(treePrefab, transform.position, Quaternion.identity);
+        Instantiate(treePrefab, spawnPos, Quaternion.identity);
     }
 }
