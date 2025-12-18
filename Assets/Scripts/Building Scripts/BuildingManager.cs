@@ -5,8 +5,8 @@ public class BuildingManager : MonoBehaviour
     public static BuildingManager Instance;
 
     [Header("Settings")]
-    public LayerMask placementMask;  // ground and surfaces u can build on
-    public float maxBuildDistance = 6f;
+    public LayerMask placementMask;     // Terrain layer
+    public float maxBuildDistance = 20f;
 
     [Header("Preview Materials")]
     public Material validMat;
@@ -16,6 +16,7 @@ public class BuildingManager : MonoBehaviour
     private GameObject realPrefab;
     private Renderer[] previewRenderers;
 
+    private Bounds previewBounds;
     private bool canPlace = false;
     private float currentRotation = 0f;
 
@@ -28,19 +29,21 @@ public class BuildingManager : MonoBehaviour
     {
         realPrefab = prefab;
 
-        // makes a preview copy
+        // Create preview object
         preview = Instantiate(prefab);
         preview.name = prefab.name + "_Preview";
 
-        // removes scripts & colliders
+        // Disable any colliders on preview
         foreach (Collider col in preview.GetComponentsInChildren<Collider>())
             col.enabled = false;
 
-        // get all renderers to swap materials
+        // Cache renderers for material swapping
         previewRenderers = preview.GetComponentsInChildren<Renderer>();
 
+        // Build combined mesh bounds for collision checking
+        previewBounds = new Bounds(preview.transform.position, Vector3.zero);
         foreach (Renderer r in previewRenderers)
-            r.material = validMat;
+            previewBounds.Encapsulate(r.bounds);
 
         currentRotation = 0f;
     }
@@ -49,38 +52,55 @@ public class BuildingManager : MonoBehaviour
     {
         if (preview == null) return;
 
-        HandlePreviewFollow();
+        UpdatePreviewPosition();
         HandleRotation();
-        HandlePlacement();
+        TryPlaceObject();
     }
 
-    void HandlePreviewFollow()
+    private void UpdatePreviewPosition()
     {
-        // casts from center of screen
-        Ray ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f));
-        if (Physics.Raycast(ray, out RaycastHit hit, maxBuildDistance, placementMask))
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Debug.DrawRay(ray.origin, ray.direction * maxBuildDistance, Color.red);
+
+        // Raycast against EVERYTHING
+        if (!Physics.Raycast(ray, out RaycastHit hit, maxBuildDistance))
         {
-            Vector3 pos = hit.point;
-
-            // optional snap to grid:
-            pos.x = Mathf.Round(pos.x / 0.5f) * 0.5f;
-            pos.z = Mathf.Round(pos.z / 0.5f) * 0.5f;
-
-            preview.transform.position = pos;
-            preview.transform.rotation = Quaternion.Euler(0f, currentRotation, 0f);
-
-            // checks for collisions:
-            canPlace = !Physics.CheckBox(
-                preview.transform.position,
-                preview.GetComponentInChildren<Renderer>().bounds.extents * 0.95f,
-                preview.transform.rotation
-            );
-
-            SwapPreviewMaterial(canPlace);
+            preview.SetActive(false);
+            canPlace = false;
+            return;
         }
+
+        // Always show preview at hit point
+        preview.SetActive(true);
+
+        preview.transform.position = hit.point + Vector3.up * 0.02f;
+        preview.transform.rotation = Quaternion.Euler(0f, currentRotation, 0f);
+
+        // Recalculate bounds AFTER moving
+        previewBounds = new Bounds(preview.transform.position, Vector3.zero);
+        foreach (Renderer r in previewRenderers)
+            previewBounds.Encapsulate(r.bounds);
+
+        // Collision check decides validity
+        canPlace = !Physics.CheckBox(
+            previewBounds.center,
+            previewBounds.extents * 0.95f,
+            preview.transform.rotation
+        );
+
+        UpdatePreviewMaterial(canPlace);
     }
 
-    void HandleRotation()
+
+
+
+    private void UpdatePreviewMaterial(bool valid)
+    {
+        foreach (Renderer r in previewRenderers)
+            r.material = valid ? validMat : invalidMat;
+    }
+
+    private void HandleRotation()
     {
         if (Input.GetKey(KeyCode.Q))
             currentRotation -= 90 * Time.deltaTime;
@@ -88,26 +108,22 @@ public class BuildingManager : MonoBehaviour
         if (Input.GetKey(KeyCode.E))
             currentRotation += 90 * Time.deltaTime;
 
-        // clean rotation
         currentRotation = Mathf.Round(currentRotation / 90f) * 90f;
     }
 
-    void HandlePlacement()
+    private void TryPlaceObject()
     {
+        // LEFT CLICK to place
         if (Input.GetMouseButtonDown(0) && canPlace)
         {
             Instantiate(realPrefab, preview.transform.position, preview.transform.rotation);
+            Destroy(preview); // stop preview after placing
         }
 
-        if (Input.GetMouseButtonDown(1)) // right click cancels
+        // RIGHT CLICK to cancel
+        if (Input.GetMouseButtonDown(1))
         {
             Destroy(preview);
         }
-    }
-
-    void SwapPreviewMaterial(bool valid)
-    {
-        foreach (Renderer r in previewRenderers)
-            r.material = valid ? validMat : invalidMat;
     }
 }
