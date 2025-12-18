@@ -5194,7 +5194,7 @@ MonoBehaviour:
   tracerSpeed: 300
   damage: 5
   range: 100
-  fireRate: 10
+  fireRate: 0.5
   impactEffect: {fileID: 7680051650800392654, guid: 44ae3768cd706491192c29b44c5dbcbd, type: 3}
 --- !u!82 &-959233420905934522
 AudioSource:

@@ -18,8 +18,8 @@ public class RifleScript : MonoBehaviour
     [Header("Gun Settings")]
     public float damage = 5f;
     public float range = 100f;
-    public float fireRate = 10f;      // Bullets per second
-    private float nextTimeToFire = 0f;
+    public float fireRate = .10f;
+    private bool isShooting;
 
     [Header("Impact")]
     public GameObject impactEffect;
@@ -59,9 +59,14 @@ public class RifleScript : MonoBehaviour
 
     void DoAction()
     {
-        Debug.Log("Shots fired!");
-        // Replace this with action
-        Shoot();
+        if (!isShooting)
+        {
+            isShooting = true;
+            Debug.Log("Shots fired!");
+            // Replace this with action
+            Shoot();
+            Invoke(nameof(ResetShooting), fireRate);
+        }
     }
 
     void Shoot()
@@ -120,6 +125,11 @@ public class RifleScript : MonoBehaviour
 
         // destroy after trail finishes
         Destroy(tracerObj, trail.time);
+    }
+
+    void ResetShooting()
+    {
+        isShooting = false;
     }
 
     // Check recursively if this object is a child of a parent with the specified name
