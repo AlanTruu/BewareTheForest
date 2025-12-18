@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.078
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -6589,7 +6589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d64c4477f816e4e8c73f43edba85b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BabyManager
-  totalMissingKids: 2
+  totalMissingKids: 1
   Kidtext: {fileID: 1538558311}
 --- !u!4 &965797489
 Transform:
@@ -7317,6 +7317,53 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1a2e569c36b55b4bb030201ff1fbde9, type: 3}
+--- !u!1 &1156369392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1156369394}
+  - component: {fileID: 1156369393}
+  m_Layer: 0
+  m_Name: FogZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1156369393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156369392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a3b4c4083a68c4e86bbc3574bba9c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FogZone
+  clearFogDensity: 0.002
+  darkFogDensity: 0.02
+  transitionSpeed: 1
+--- !u!4 &1156369394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156369392}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 32.30037, y: 74, z: 890.975}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1183706065
 GameObject:
   m_ObjectHideFlags: 0
@@ -8997,7 +9044,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 536552533384394621, guid: 007e66cbe42c5aa4e8de846a57456e7b, type: 3}
       propertyPath: fuel
-      value: 100
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 536552533384394621, guid: 007e66cbe42c5aa4e8de846a57456e7b, type: 3}
       propertyPath: maxFuel
@@ -15126,3 +15173,4 @@ SceneRoots:
   - {fileID: 2130310248}
   - {fileID: 965797489}
   - {fileID: 1432094550}
+  - {fileID: 1156369394}
