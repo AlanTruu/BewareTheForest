@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::itsmakingthings_daynightcycle.DayNightCycle
   startTimeOfDay: 7
-  cycleSpeed: 0.02
+  cycleSpeed: 0.2
   resetSpeed: 1
   forwardsOnly: 0
   sunLight: {fileID: 410087040}

@@ -71,7 +71,7 @@ public class Wendigo : MonoBehaviour, ILife
     public IEnumerator attack()
     {
         animator.SetTrigger("attack");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         audio_source.PlayOneShot(punch);
 
         Vector3 origin = transform.position;
